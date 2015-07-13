@@ -1,0 +1,3 @@
+#!/bin/bash
+
+pandoc dv017a-notes.md -o dv017a-notes.pdf
