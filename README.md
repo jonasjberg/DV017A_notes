@@ -4,8 +4,10 @@
 
 Jonas Sjöberg  
 Högskolan i Gävle  
-`tel12jsg@student.hig.se`
-`https://www.github.com/jonasjberg`
+```
+tel12jsg@student.hig.se
+https://www.github.com/jonasjberg
+```
 
 
 ### Abstrakt:
