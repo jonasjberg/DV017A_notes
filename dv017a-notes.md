@@ -30,7 +30,7 @@
 Föreläsning 1
 =============
 
-*2015-06-08*
+*2015-06-08 måndag*
 
 
 Om programmering och problemlösning
@@ -91,7 +91,13 @@ Hur ska vi representera information som:
 * E-post?
 * Aktier?
 
+Särskilt välformulerade svar på den här frågan och övriga relaterat till
+objektorientering i Java:
+["The progress of abstraction" - Thinking in Java, 3rd ed. Revision 4.0]
 
+
+["The progress of abstraction" - Thinking in Java, 3rd ed. Revision 4.0]:
+http://www.linuxtopia.org/online_books/programming_books/thinking_in_java/TIJ303.htm
 
 --------------------------------------------------------------------------------
 
@@ -233,8 +239,9 @@ Teckenvärde/typ
         innehåller ASCII i den "lägre" delen.
         Den internationella motsvarigheten till ACSII är *ISO 646-IRV*.
 
-            Kompakt tabell från 'man ascii' i Release 3.74 av
-            Linux man-pages project:
+        Kompakt tabell från 'man ascii' i Release 3.74 av Linux man-pages
+        project, [ASCII(7) -- Linux Programmer's Manual]:
+
 
 
                2 3 4 5 6 7       30 40 50 60 70 80 90 100 110 120
@@ -259,6 +266,9 @@ Teckenvärde/typ
 
 * Typen `char` är ett 16-bitars *Unicode*-tecken. Det har ett minvärde på
     `\u0000` (decimalt 0) och ett maxvärde på `\uFFFF` (65.535 inklusivt).
+
+[ASCII(7) -- Linux Programmer's Manual]:
+http://man7.org/linux/man-pages/man7/ascii.7.html
 
 Sanningsvärde/typ
 -----------------
@@ -1430,26 +1440,8 @@ String - metoder
 
 Objektfabrik
 ------------
-a
 
-b
-
-abcdef
-ABCDEF
-abc
-ef
-c
-,)3e)()
-s
-0
-4
-a
-(
-tpreinrgC
-s
-p
-b
-s.stouUs
+<!--TODO:-->
 
 
 Klassen String
@@ -1948,25 +1940,25 @@ Nästlade loopar -- testutskrift:
 Arrayer (fält, vektorer)
 ------------------------
 
-* En indexerad variabel
+* En indexerad variabel.
 
-tentaresultat
-
-* Som en byrå med lådor där varje låda har ett nummer och byrån ett namn
+* Som en byrå med lådor där varje låda har ett nummer och byrån ett namn.
 
 * Enskilda element väljs (indexeras) med [ ]
 
 
 
-
-                              Första index är 0  --->   0 25
-                                                        1 43
-                                                        2 19
-                                                        3 5
-                                                        4 22
-                                                        5 27
-           T.ex. tentaresultat[6] har värdet 18  --->   6 18
-                                                        7 17
+                                                           tentaresultat
+                                                           .-----------.
+                              Första index är 0  --->  [0] |    25     |
+                                                       [1] |    43     |
+                                                       [2] |    19     |
+                                                       [3] |    5      |
+                                                       [4] |    22     |
+                                                       [5] |    27     |
+           T.ex. tentaresultat[6] har värdet 18  --->  [6] |    18     |
+                                                       [7] |    17     |
+                                                           '-----------'
 
 
 
@@ -2136,6 +2128,8 @@ Utskrift:
 Föreläsning 6 - Iterationer & arrayer
 =====================================
 
+*2015-07-13 måndag*
+
 
 Strukturer för data
 -------------------
@@ -2145,10 +2139,18 @@ Strukturer för data
     + värden
     + objekt
 
-* Vanligt att data hanteras i grupper
+* Vanligt att data hanteras i grupper.
+
   Vi har sett t.ex. primitiva data i arrayer (fält).  Vi kommer även att
   titta på hur man lagrar objekt i arrayer och i listor och att det är vanligt
   att hantera dem repetitivt.
+
+
+Detaljerad information från Oracle: [Arrays, the Java Tutorials].
+
+
+[Arrays, the Java Tutorials]:
+https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
 
 
 Inmatning av värden från tangentbordet
@@ -2203,10 +2205,17 @@ Enkel sortering
 * Bubbelsortering -- idé:
 
     + Antag array med N stycken element
-    + Iterera genom alla intilliggande par, d.v.s. 
+    + Iterera genom alla intilliggande par, d.v.s.
       element `(1,2)`, `(2,3)`, `(3,4)`, ..., `(N-1,N)`
     + Jämför aktuellt elementpar och byt inbördes plats på de par som är fel
       ordnade. Upprepa tills inga utbyten längre behövs.
+
+
+Fördjupning i sorteringsmetoder: [Algorithms, the Java Tutorials].
+
+
+[Algorithms, the Java Tutorials]:
+https://docs.oracle.com/javase/tutorial/collections/algorithms/
 
 Algoritm i pseudokod
 --------------------
@@ -2231,7 +2240,7 @@ Algoritm i Java-kod
     {
         boolean sortera = true;
         final int N = array.length;
-        
+
         while (sortera) {
             sortera = false;
 
@@ -2246,7 +2255,7 @@ Algoritm i Java-kod
             }
         }
     }
-    
+
 
 Första iterationen
 ------------------
@@ -2254,19 +2263,19 @@ Första iterationen
     [5] [2]  9   3   7   6   1   0   8   4
 
      2   5  [9] [3]  7   6   1   0   8   4
-     
+
      2   5   3  [9] [7]  6   1   0   8   4
-     
+
      2   5   3   7  [9] [6]  1   0   8   4
-     
+
      2   5   3   7   6  [9] [1]  0   8   4
-     
+
      2   5   3   7   6   1  [9] [0]  8   4
-     
+
      2   5   3   7   6   1   0  [9] [8]  4
-     
+
      2   5   3   7   6   1   0   8  [9] [4]
-     
+
      2   5   3   7   6   1   0   8   4   9
 
 
@@ -2327,7 +2336,7 @@ Sjätte iterationen
     [2] [1]  0   3   4   5   6   7   8   9
 
      1  [2] [0]  3   4   5   6   7   8   9
-     
+
      1   0   2   3   4   5   6   7   8   9
 
 
@@ -2367,7 +2376,8 @@ Insikter
 Arrayer för referenser (till objekt)
 ------------------------------------
 
-* I Java hanteras objekt -- hur hanteras många? (T.ex. i arrayer av lämplig typ)
+* I Java hanteras objekt -- hur hanteras många?  
+  (T.ex. i arrayer av lämplig typ)
 
 * Anta att vi har klassen Person med attributen förnamn, efternamn och ålder:
 
@@ -2407,11 +2417,11 @@ En bild av arrayen
 ------------------
 
 
-    grupp     <-- (En referens till arrayen)
+    grupp   <--- (En referens till arrayen)
        \
-        \     
-         V    
-    .->  [null] [null] [null] [null] [null] [null] [null] [null] [null] [null] 
+        \
+         V
+    .->  [null] [null] [null] [null] [null] [null] [null] [null] [null] [null]
     |
     |
     '- Arrayen innehåller referenser av typen Person som är initierade till null
@@ -2432,464 +2442,385 @@ Lägg in objekt
     grupp[9] = new Person("Ståhl",     "Peter",     19 );
 
 
+En bild av arrayen
+------------------
+
+```
+    .-----------.  .-----------.  .-----------.   .-----------.   .-----------.
+    | Andersson |  | Davidson  |  | Boudien   |   | Fridegård |   | Munter    |
+    | Eva       |  | Anna      |  | Gunilla   |   | Lisa      |   | Camilla   |
+    | 22        |  | 15        |  | 24        |   | 33        |   | 20        |
+    '-----------'  '-----------'  '-----------'   '-----------'   '-----------'
+          /              /              /               /               /
+         /              /              /               /               /
+        / grupp[0]     / grupp[2]     / grupp[4]      / grupp[6]      / grupp[8]
+       /              /              /               /               /
+      v              v              v               v               v
+.-----------------------------------------------------------------------------.
+|      |       |       |       |       |       |       |       |       |      |
+'-----------------------------------------------------------------------------'
+           ^              ^               ^                ^               ^
+          /              /               /                /               /
+grupp[1] /     grupp[3] /      grupp[5] /       grupp[7] /      grupp[9] /
+        /              /               /                /               /
+       /              /               /                /               /
+ .-----------.  .-----------.   .-----------.    .-----------.    .-----------.
+ | Petterson |  | Enoksson  |   | Hård      |    | Rask      |    | Ståhl     |
+ | Adam      |  | Frans     |   | Niclas    |    | Johan     |    | Peter     |
+ | 44        |  | 65        |   | 29        |    | 18        |    | 19        |
+ '-----------'  '-----------'   '-----------'    '-----------'    '-----------'
+```
 
 
 
+Alt: lägg till objekt i initiering
+----------------------------------
+
+    Person [] grupp = {
+        new Person("Andersson",  "Eva",      22),
+        new Person("Petterson",  "Adam",     44),
+        new Person("Davidson",   "Anna",     15),
+        new Person("Enoksson",   "Frans",    65),
+        new Person("Boudien",    "Gunilla",  24),
+        new Person("Hård",       "Niclas",   29),
+        new Person("Fridegård",  "Lisa",     33),
+        new Person("Rask",       "Johan",    18),
+        new Person("Munter",     "Camilla",  20),
+        new Person("Ståhl",      "Peter",    19)
+    };
+
+    //Fördelen är bl.a. att man inte måste ange storlek
+
+
+Personerna individuellt
+-----------------------
+
+    // Plocka fram en person ur arrayen:
+
+    Person p = grupp[4];    // gunilla
+    p.print();              // skriver ut info
+
+    // Men eftersom referenserna finns i arrayen
+    // så kan man skriva direkt:
+
+
+    grupp[4].print();
+
+
+Personerna som grupp
+--------------------
+
+Nu kan personerna hanteras som grupp.
+T.ex. kan hela gruppen skickas någonstans för "behandling" (d.v.s. metodanrop).
+
+Antag att vi vill skapa en metod som skriver ut alla persondata en godtycklig
+grupp av personer:
 
 
 
+Att överföra arrayer till metoder
+---------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-En bild av arrayen
-Andersson
-Eva
-22
-
-grupp
-
-grupp[0]
-
-grupp[1]
-
-Petterson
-Adam
-44
-
-Davidson
-Anna
-15
-
-grupp[2]
-
-Boudien
-Gunilla
-24
-
-Fridegård
-Lisa
-33
-
-grupp[4]
-
-grupp[3]
-
-grupp[5]
-
-Enoksson
-Frans
-65
-
-Hård
-Niclas
-29
-
-Munter
-Camilla
-20
-
-grupp[6]
-
-grupp[7]
-
-Rask
-Johan
-18
-
-grupp[8]
-
-grupp[9]
-
-Ståhl
-Peter
-19
-
-Alt: lägg till objekt i initiering
-Person [] grupp = {
-new
-new
-new
-new
-new
-new
-new
-new
-new
-new
-};
-
-Person("Andersson", "Eva", 22),
-Person("Petterson", "Adam", 44),
-Person("Davidson", "Anna", 15),
-Person("Enoksson", "Frans", 65),
-Person("Boudien", "Gunilla", 24),
-Person("Hård", "Niclas", 29),
-Person("Fridegård", "Lisa", 33),
-Person("Rask", "Johan", 18),
-Person("Munter", "Camilla", 20),
-Person("Ståhl", "Peter", 19)
-
-//Fördelen är bl.a. att man inte måste ange storlek
-
-Personerna individuellt
-Boudien
-Gunilla
-24
-
-// Plocka fram en person ur arrayen:
-Person p = grupp[4]; // gunilla
-p.print(); // skriver ut info
-
-p
-
-// Men eftersom referenserna finns i arrayen
-// så kan man skriva direkt:
-grupp[4].print();
-grupp[4]
-
-Personerna som grupp
-
-
-Nu kan personerna hanteras som grupp
-
-
-
-T.ex. kan hela gruppen skickas någonstans för
-"behandling"
-
-
-
-D.v.s. metodanrop
-
-
-
-Antag att vi vill skapa en metod som skriver ut alla
-persondata en godtycklig grupp av personer
-
-Att överföra arrayer till metoder
-OBS syntax för
-array-parameter
-
-Den lokala
-parameterns
-namn
-Arrayens
-längd!
-
+```
+                           .----------------- OBS! syntax för array-parameter
+                           |      .---------- Den lokala parameterns namn
+                           |      |     .---- Arrayens längd
+                           v      v     |
+                                        v
 public void skrivUt(Person [] personer)
 {
-for( int i=0 ; i < personer.length; i++ )
-{
-System.out.println( personer[i].toString() );
-}
-}
-Indexering
+    for( int i=0 ; i < personer.length; i++ ) {
+        System.out.println(personer[i].toString());
+    }
+}                                   ^        ^
+                                    |        |
+                        Indexering -'        |
+OBS! toString() behöver inte anges ----------'
+```
 
-OBS att
-toString() inte
-behöver anges
+Att anropa metoden
+------------------
 
-Att anropa metoden
-// Antag att vi har vår gamla array med 10 personer:
-Person [] grupp = new Person[10];
-grupp[0] = new Person("Andersson", "Eva", 22);
-// OSV...
-skrivUt(grupp); //Metodanropet:
-Andersson Eva, 22
-Petterson Adam, 44
-Davidson Anna, 15
-Enoksson Frans, 65
-Boudien Gunilla, 24
-Hård Niclas, 29
-Fridegård Lisa, 33
-Rask Johan, 18
-Munter Camilla, 20
-Ståhl Peter, 19
+    // Antag att vi har vår gamla array med 10 personer:
 
-Varning för null!
+    Person [] grupp = new Person[10];
+    grupp[0] = new Person("Andersson", "Eva", 22);          // OSV...
 
+    skrivUt(grupp); //Metodanropet:
 
-Eftersom vi här hanterar referenser så kan vi få problem
 
+### Utskrift:
 
+    Andersson Eva, 22
+    Petterson Adam, 44
+    Davidson Anna, 15
+    Enoksson Frans, 65
+    Boudien Gunilla, 24
+    Hård Niclas, 29
+    Fridegård Lisa, 33
+    Rask Johan, 18
+    Munter Camilla, 20
+    Ståhl Peter, 19
 
-Antag att något element råkar vara null
 
 
+Varning för null!
+-----------------
 
-T.ex. genom att arrayen inte är "fylld"
+Eftersom vi här hanterar referenser så kan vi få problem.
 
+Antag att något element råkar vara null, t.ex. genom att arrayen inte är fylld 
+eller att något element har satts till **null**:
 
+    grupp[5] = null;
 
-Eller att något element har satts till null
-grupp[5] = null;
 
-En bild av arrayen
-Andersson
-Eva
-22
+En bild av arrayen
+------------------
 
-Davidson
-Anna
-15
+```
+    .-----------.  .-----------.  .-----------.   .-----------.   .-----------.
+    | Andersson |  | Davidson  |  | Boudien   |   | Fridegård |   | Munter    |
+    | Eva       |  | Anna      |  | Gunilla   |   | Lisa      |   | Camilla   |
+    | 22        |  | 15        |  | 24        |   | 33        |   | 20        |
+    '-----------'  '-----------'  '-----------'   '-----------'   '-----------'
+          /              /              /               /               /
+         /              /              /               /               /
+        / grupp[0]     / grupp[2]     / grupp[4]      / grupp[6]      / grupp[8]
+       /              /              /               /               /
+      v              v              v               v               v
+.-----------------------------------------------------------------------------.
+|      |       |       |       |       |  null |       |       |       |      |
+'-----------------------------------------------------------------------------'
+           ^              ^                                ^               ^
+          /              /                                /               /
+grupp[1] /     grupp[3] /                       grupp[7] /      grupp[9] /
+        /              /                                /               /
+       /              /                                /               /
+ .-----------.  .-----------.                    .-----------.    .-----------.
+ | Petterson |  | Enoksson  |                    | Rask      |    | Ståhl     |
+ | Adam      |  | Frans     |                    | Johan     |    | Peter     |
+ | 44        |  | 65        |                    | 18        |    | 19        |
+ '-----------'  '-----------'                    '-----------'    '-----------'
+```
 
-Boudien
-Gunilla
-24
 
-Fridegård
-Lisa
-33
+Vad händer nu?
+--------------
 
-Munter
-Camilla
-20
+Det går alldeles utmärkt att skicka arrayen till metoden `skrivUt()`.
+Men inne i metoden anropas ju `toString()` på alla element (personer).
 
-Rask
-Johan
-18
+När loopen kommer till index 5 så blir det i princip: *null.toString()*.
 
-Ståhl
-Peter
-19
+Man kan ju inte anropa en metod i ett objekt som inte finns!
 
-grupp
+Programmet avbryts av en **null pointer exception**.
 
-null
 
-Petterson
-Adam
-44
+Eller ännu hemskare
+-------------------
 
-Enoksson
-Frans
-65
 
-Vad händer nu?
+* Hela array-objektet har tagits bort.
+* Kom ihåg att arrayen i sig själv är ett objekt.
 
+        Person [] grupp = new Person[10];
 
-Det går alldeles utmärkt att skicka arrayen till metoden
-skrivUt()
+        ...
 
+        grupp = null;
 
 
-Men inne i metoden anropas ju toString() på alla element
-(personer)
+### En bild av arrayen:
 
+     grupp
+    .------.
+    | null |
+    '------'
 
 
-När loopen kommer till index 5 så blir det i princip:
-null.toString()
+Analys
+------
 
+                                      .---------- Kan vara null
+                                      |
+                                      v
+    public void skrivUt(Person [] personer)
+    {
+        for( int i=0 ; i < personer.length; i++ ) {
+            System.out.println(personer[i].toString());
+        }
+    }                                  ^         ^
+                                       |         |
+    Risk för null-pointer exception ---+---------'
+    i både '.length' och '.toString'
 
 
-Man kan ju inte anropa en metod i ett objekt som inte
-finns!
+Åtgärd
+------
 
+                                      .---------- Kan vara null
+                                      |
+                                      v
+    public void skrivUt(Person [] personer)
+    {
+        if (personer != null)                            <------ Kontrollera!
+        for (int i=0; i < personer.length; i++) {
+            if (personer[i] != null)                     <------ Kontrollera!
+            System.out.println(personer[i].toString());
+        }
+    }
 
 
-Programmet avbryts av en null pointer exception
+Parametrarna till main
+----------------------
 
-Eller ännu hemskare
+### Programstart från kommandorad:
 
+    >java TestClass adam bertil 123 667
+                     |     |     |   |
+          args[0] <--'     |     |   |
+          args[1] <--------'     |   |
+          args[2] <--------------'   |
+          args[3] <------------------'
+             |
+             '-------------------------.
+                                       |
+                                       v
+    public static void main(String [] args)
+    {
+        for (int i = 0; i < args.length ; i++)
+            System.out.println( args[i] );
+    }
 
-Hela array-objektet har tagits bort
 
 
+Utökat exempel på körning, command-line arguments med '\\0'-terminated strings:
 
-Kom ihåg att arrayen i sig själv är ett objekt
-Person [] grupp = new Person[10];
-...
-grupp = null;
+
+### Programstart från kommandorad:
+
+    $ ./progname one two three
+
+### Argumentarrayens innehåll:
+
+    argc        4
+    argv[0]     progname
+    argv[1]     one
+    argv[2]     two
+    argv[3]     three
+
+
+### Datavisualisering, tecken för tecken:
+
+      p  r  o  g  n  a  m  e  \\0   o  n  e  \\0   t  w  o  \\0   t  h  r  e  e  \\0
+    |___.__.__.__.__.__.__.__.___|___.__.__.___|___.__.__.___|___.__.__.__.__.___|
+    |   |  |  |  |  |  |  |  |###|   |  |  |###|   |  |  |###|   |  |  |  |  |###|
+    |            argv[0]         |   argv[1]   |   argv[2]   |      argv[3]      |
+
+
+
+Flerdimensionella arrayer
+-------------------------
 
-grupp
-null
+* Eftersom arrayer är objekt, så måste de ju kunna ligga i arrayer, ...
 
-Analys
-Kan vara null
+* Vi kan skapa arrayer med godtyckligt många dimensioner:
 
-public void skrivUt(Person [] personer)
-{
-for( int i=0 ; i < personer.length; i++ )
-{
-System.out.println(personer[i].toString());
-}
-}
-Risk för null-pointer
-exception
+        int [][] tabell = new int[4][4];
 
-Åtgärd
-Kan vara null
+* Tabell är en referens till ett array-objekt som kan innehåller referenser
+  till en-dimensionella arrayer.
 
-public void skrivUt(Person [] personer)
-{
-Kontrollera!
-if( personer != null )
-for( int i=0 ; i < personer.length; i++ )
-{
-Kontrollera!
-if( personer[i] != null )
-System.out.println(personer[i].toString());
-}
-}
 
-Parametrarna till main
-Programstart
+### Bild av flerdimensionell array:
 
->java TestClass adam bertil 123 667
-args[0]
+```
+                  .----------------.    .----------------.
+                  | 1 | 4 | 2 | 12 |    | 5 | 65 | 3 | 3 |
+                  '----------------'    '----------------'
+                    ^                     ^
+                    |                    /
+                    |         .---------'
+                    |        /
+tabell              |       /
+.----.            .-|-------|-----.
+| +-------------->| + | + | + | + |
+'----'            '-----|-------|-'
+                        |       \
+                   ^    |        \
+                  /     |         '----------.
+                 /      |                     \
+                /       v                      v
+               '      .---------------.      .---------------.
+               |      | 3 | 4 | 3 | 5 |      | 6 | 5 | 3 | 8 |
+               |      '---------------'      '---------------'
+               |
+               |                                      ^
+               |                                     /
+               |            tabell[ i ][ j ]        /
+               |                    |    |         /
+               '--------------------'    '--------'
+                         Primär array    Sekundär array
+                                  RAD    KOLUMN
+```
 
-args[1]
 
-args[2]
+### Mental modell:
 
-args[3]
+```
+ .-------------------.
+ | 1  | 4  | 2  | 12 |
+ |----+----+----+----|
+ | 3  | 4  | 3  | 5  |
+ |----+----+----+----|
+ | 5  | 65 | 3  | 3  |
+ |----+----+----+----|
+ | 6  | 5  | 3  | 8  |
+ '-------------------'
+```
 
-public static void main(String [] args)
-{
-for( int i = 0; i < args.length ; i++ )
-System.out.println( args[i] );
-adam
-bertil
-}
-123
-667
 
-Flerdimensionella arrayer
+### Exempelkod och utskrift:
 
+    for(int i = 0; i < tabell.length; i++)
+        for(int j = 0; j < tabell[i].length; j++)
+            System.out.println(tabell[i][j]);
 
-Eftersom arrayer är objekt, så måste de ju kunna ligga i
-arrayer, …
+### Utskrift:
 
+    1
+    4
+    2
+    12
+    3
+    4
+    3
+    5
+    5
+    65
+    3
+    3
+    6
+    5
+    3
+    8
 
 
-Vi kan skapa arrayer med godtyckligt många
-dimensioner
-int [][] tabell = new int[4][4];
+Problem -- arrayer har fix storlek
+----------------------------------
 
+Programmet är begränsat till att hantera max t.ex. 10 resultat.
+Det är Svårt att "sätta in" objekt inne i arrayen och att "ta bort" element ur
+arrayen.
+Vi vill att:
 
+* Programmet skall kunna hantera godtyckligt många element.
 
-Tabell är en referens till ett array-objekt som kan
-innehåller referenser till en-dimensionella arrayer
+* Förändringar i antal element kan ske dynamiskt så att programmet anpassar sig
+  till det antal som är aktuellt.
 
-1
 
-4
+**Nästa föreläsning: Listor!**
 
-2
-
-12
-
-5
-
-65
-
-3
-
-3
-
-for(int i=0; i<tabell.length; i++)
-for(int j=0; j<tabell[i].length; j++)
-System.out.println( tabell[i][j] );
-
-tabell
-
-Mental modell
-
-1
-3
-5
-6
-
-4
-4
-65
-5
-
-2
-3
-3
-3
-
-12
-5
-3
-8
-
-3
-
-4
-
-3
-
-5
-
-6
-
-5
-
-3
-
-tabell[ i ][ j ]
-Primär array - rad
-
-Sekundär array - kolumn
-
-8
-
-Utskrift:
-1
-4
-2
-12
-3
-4
-3
-5
-5
-65
-3
-3
-6
-5
-3
-8
-
-Problem  arrayer har fix storlek
-
-
-Programmet är begränsat till att hantera max t.ex. 10 resultat
-
-
-
-Vi vill att programmet skall kunna hantera godtyckligt många
-element
-
-
-
-Att förändringar i antal element kan ske dynamiskt
-
-
-
-Så att programmet anpassar sig till det antal som är aktuellt
-
-
-
-Svårt att "sätta in" objekt inne i arrayen och svårt att "ta bort"
-element
-
- Nästa föreläsning : Listor !
-
-
