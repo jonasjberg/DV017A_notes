@@ -10,14 +10,14 @@
 
 
 
-### Abstrakt:
+## Abstrakt
   Anteckningar baserade på powerpoint-slides konverterade från ".ppt" till
   textbaserade format, därefter utökade och/eller modifierade med eget material.
   Detta är mina Egna studie-/föreläsningsanteckningar och kan således mycket
   väl innehålla faktafel. Dokumentet uppdateras löpande under kursens gång.
 
 
-### Licensiering:
+## Licensiering
 |  Creative Commons Non-Commercial Share Alike 3.0
 |  Se `LICENSE.md` för fullständig licensinformation.
 
