@@ -3361,6 +3361,355 @@ Använd det du redan har!
 
 
 
+Föreläsning 8 -- Wrapper-klasser, Autoboxing, listor i Java
+===========================================================
 
 
-
+Listor i Java hanterar endast objekt!
+-------------------------------------
+
+* Hur ska man då kunna hantera numeriska värden i listorna?
+
+* Men kan man inte göra en klass som innehåller ett numeriskt värde?
+
+        class Number
+        {
+            private int number;
+
+            public Number(int n)
+            {
+                number = n;
+            }
+
+            public int getValue()
+            {
+                return number;
+            }
+        }
+
+
+Hur "stoppar man in"?
+---------------------
+
+    List<Number> lista = new Vector<Number>();    // Skapa listan.
+
+    for (int i = 1; i <= 10; i++) {               // Stoppa in 1..10 i listan.
+        Number n = new Number(i);                 // Skapa ett objekt som innehåller talet.
+        lista.add(n);                             // Lägg in i listan.
+    }
+
+
+Hur "plockar man ut"?
+---------------------
+
+    // Samma lista som på föregående bild...
+
+    // plocka ut och skriv ut
+    for (int i = 0; i < lista.size(); i++) {
+        Number n = lista.get(i);                // Hämta ut objektet ur listan.
+        System.out.println(n.getValue());       // Skriv ut talet som finns inuti objektet.
+    }
+
+
+Vi kan göra det bekvämt med toString()!
+---------------------------------------
+
+    class Number
+    {
+        private int number;
+
+        public Number(int n)
+        {
+            number = n;
+        }
+
+        public int getValue()
+        {
+            return number;
+        }
+
+        public String toString()
+        {
+            return "" + number;         // Returnerar en strängrepresentation av talet.
+        }
+    }
+
+
+Enklare att skriva ut
+---------------------
+
+    // plocka ut och skriv ut
+    for (int i = 0; i < lista.size(); i++) {
+        Number n = lista.get(i);                //Hämta ut objektet ur listan:
+        System.out.println(n);                  // Skriv ut talet som finns inuti objektet.
+                                                // toString() anropas automatiskt av println.
+    }
+
+
+... och ännu enklare...
+-----------------------
+
+    // plocka ut och skriv ut
+    for (int i = 0; i < lista.size(); i++) {
+        System.out.println(lista.get(i).getNumber());
+    }                                ^
+                                     |
+                                     '--- Objektet hämtas ut och
+                                             getNumber() anropas
+
+
+... och ännu enklare...
+-----------------------
+
+    // plocka ut och skriv ut
+    for (int i = 0; i < lista.size(); i++) {
+        System.out.println(lista.get(i));
+    }                                ^
+                                     |
+                                     '--- Objektet hämtas ut
+                                          och toString() anropas
+
+... och ännu enklare...
+-----------------------
+
+* Använd den nya for-loopen för listor
+* Då slipper vi indexera
+
+    // plocka ut och skriv ut
+    for (Number n : lista) {
+        System.out.println(n);
+    }                    ^
+                         |
+                         '--- Objektet hämtas ut
+                              och toString() anropas
+
+
+MEN -- måste vi skriva klassen Number?
+--------------------------------------
+
+* NEJ !
+* Det finns redan färdiga klasser i Java
+    - Integer
+    - Double
+    - Boolean
+    - ...
+
+* Dessa kallas *Wrapper-klasser*
+
+
+Wrapper-klasser
+---------------
+
+     Integer            Double              Boolean
+    .------.          .--------.          .---------.
+    | int  |          | double |          | boolean |
+    '------'          '--------'          '---------'
+
+
+**Omslagsklasser** är representanter för primitiva data och innehåller
+klassmetoder (`static`-deklarerade) som har med dessa att göra.
+
+* Har även instansmetoder
+
+* `byte`, `short`, `int`, `long`, `float`, `char`
+* `Byte`, `Short`, `Intereger`, `Long`, `Float`, `Character`
+
+* Även en objektrepresentation (tex för listor)
+
+
+Wrapperklasser
+--------------
+
+* Klassmetoden `parseInt(String s)` i `Integer`
+
+* Klassmetoden `parseDouble(String s)` i `Double`
+
+* Det finns beskrivande attribut, t.ex:
+
+    - `MIN_VALUE` och `MAX_VALUE`
+
+    - `NEGATIVE_INFINITY` & `POSITIVE_INFINITY`
+
+    - `SIZE` ger antalet bitar
+
+
+Wrapper - Character
+-------------------
+
+    Character
+    .------.
+    | char |
+    '------'
+
+
+* isDigit, isLetter,
+
+* isLetterOrDigit, isLowerCase,
+
+* isUpperCase, isWhitespace,
+
+* toLowerCase, toUpperCase,
+
+* getNumericValue
+
+
+Vad wrappas in?
+---------------
+
+* En primitiv variabel av motsvarande typ.
+
+* Referenser kan inte referera till primitiva typer.
+
+* Men referenser kan referera till instanser av wrapperklasser.
+
+        Integer i = new Integer(5);
+        Integer j = new Integer("156");
+        int     a = i.intValue();           // hämta ut primitivt värde
+        String  s = i.toString();
+
+* Detta innebär att man kan använda dem t.ex. i listor.
+
+
+Auto -boxing och -unboxing
+--------------------------
+
+Från Java version 5.0 finns automatik för konvertering mellan primitiva värden
+och Wrapper-objekt.
+
+### Exempel:
+
+    Integer i;
+    int     j;
+
+    i = 5;
+    // automatiskt: i = new Integer(5);
+
+    j = i;
+    // automatiskt: j = i.intValue();
+
+    i = i + j;
+    // automatiskt: i = new Integer( i.intValue() + j );
+
+Kom ihåg att ovanstående kod kan vara ineffektiv.
+
+
+Auto -boxing och --unboxing för listor!
+---------------------------------------
+
+Detta gör det enkelt att hantera primitiva värden i listor.
+
+    import java.util.*;
+
+    List<Integer> lista = new Vector<Integer>();
+
+    for (int i = 0; i < 100; i++)
+        lista.add(i);
+
+    for (int i : lista)
+        System.out.println( i );
+
+    int ivar = l.get(7);
+    System.out.println(ivar);
+
+
+Var läggs elementen in?
+-----------------------
+
+`add` -- normalt sist i listan.
+Men man kan ange önskad plats med: `add(plats, objekt)`
+
+
+Var hämtas objekten
+-------------------
+
+* get(plats)
+* remove(plats)
+
+
+Finns ett visst objekt?
+-----------------------
+
+* boolean contains(objekt)
+
+Ex. en kö (sist in -- sist ut)
+------------------------------
+
+    class Queue
+    {
+        private List<Integer> list = new Vector<Integer>();
+
+        public void in(Integer i)
+        {
+            list.add(i);                // sist
+        }
+
+        public Integer out()
+        {
+            return list.remove(0);      // först
+        }
+
+        public boolean isEmpty()
+        {
+            return list.isEmpty();
+        }
+    }
+
+
+Ex. en stack (sist in -- först ut)
+----------------------------------
+
+    class Stack
+    {
+        private List<Integer> list = new Vector<Integer>();
+
+        public void push(Integer i)
+        {
+            list.add(0,i);              // först
+        }
+
+        public Integer pop()
+        {
+            return list.remove(0);      // först
+        }
+
+        public boolean isEmpty()
+        {
+            return list.isEmpty();
+        }
+    }
+
+
+Använda Queue & Stack
+---------------------
+
+    Stack s = new Stack();                        .---.
+    Queue q = new Queue();                        | 0 |
+                                                  | 1 |
+    for (int i = 0; i < 5; i++) {                 | 2 |
+        q.in(i);                                  | 3 |
+        s.push(i);                                | 4 |
+    }                                             | 4 |
+                                                  | 3 |
+    while (!q.isEmpty())                          | 2 |
+        System.out.println(q.out());              | 1 |
+                                                  | 0 |
+    while (!s.isEmpty())                          '---'
+        System.out.println(s.pop());
+
+
+Exempel
+-------
+
+Vi kommer att göra ett program för att spela kort och listor kommer att
+användas.
+
+### Klasser:
+
+* Card
+* Deck
+* Hand
+* Player
+* Dealer
+
+Denna kod kommer att läggas ut...
+
