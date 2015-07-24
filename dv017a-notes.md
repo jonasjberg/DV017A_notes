@@ -139,16 +139,16 @@ Inbyggda värdetyper (fördefinierade) kan delas in i:
     - `boolean`
 
 
-|  Typ    |   Storlek   |  Minst    |   Störst   | Kommentar
-|---------|-------------|-----------|------------|------------------
-| boolean | odefinierat |           |            | sant eller falskt
-|  char   |   16 bitar  | `\u0000`  |  `\uFFFF`  | Unicode-tecken
-|  byte   |   8 bitar   |  -2^7     |   2^7  - 1 |
-|  short  |   16 bitar  |  -2^15    |   2^15 - 1 |
-|  int    |   32 bitar  |  -2^31    |   2^31 - 1 |
-|  long   |   64 bitar  |  -2^63    |   2^63 - 1 |
-|  float  |   32 bitar  |  -3.4e38  |   3.4e38   | *IEEE 754* floating point
-|  double |   64 bitar  |  -1.7e308 |   1.7e308  | *IEEE 754* floating point
+| Typ       | Storlek       | Minst                  | Störst                | Kommentar
+|-----------|---------------|------------------------|-----------------------|-------------------
+| boolean   | odefinierat   |                        |                       | sant eller falskt
+| char      | 16 bitar      | `\u0000`               | `\uFFFF`              | Unicode-tecken
+| byte      | 8 bitar       | $-2^7$                 | $2^7  - 1$            | $-128 - 127$
+| short     | 16 bitar      | $-2^{15}$              | $2^{15} - 1$          | $-32768 - 32767$
+| int       | 32 bitar      | $-2^{31}$              | $2^{31} - 1$          | $-2147483648 - 2147483647$
+| long      | 64 bitar      | $-2^{63}$              | $2^{63} - 1$          | $-9.223372037 \times 10^{18} - 9.223372037 \times 10^{18}$
+| float     | 32 bitar      | $-3.4 \times 10^{38}$  | $3.4 \times 10^{38}$  | *IEEE 754* floating point
+| double    | 64 bitar      | $-1.7 \times 10^{308}$ | $1.7 \times 10^{308}$ | *IEEE 754* floating point
 
 
 Heltalstyper
@@ -208,7 +208,7 @@ Flyttalstyper: `float`, `double`
 * Normalt används typen `double`
 
 ### `float`
-* Typen `float`är ett "single-precision 32-bit *IEEE 754* floating point" tal.
+* Typen `float` är ett "single-precision 32-bit *IEEE 754* floating point" tal.
 * Möjliga värden, se [Floating-Point Types, Formats, and Values, Java Language Specification].
 * Har lägre precision än `double` och är snabbare.
 * Räkna med 7 siffrors noggrannhet (decimaler)
@@ -1427,15 +1427,15 @@ String - metoder
 
 * Ny eller ändrad text läggs automatiskt i nya objekt
 
-    String s1 = new String( "abcedf" );         s1 ---> abcdef
+        String s1 = new String( "abcedf" );         s1 ---> abcdef
 
-    String s2 = s1.substring( 0, 3 );           s2 ---> abc
+        String s2 = s1.substring( 0, 3 );           s2 ---> abc
 
-    String s3 = s2.toUpperCase();               s3 ---> ABC
+        String s3 = s2.toUpperCase();               s3 ---> ABC
 
-    System.out.println(s1);             // abcdef
-    System.out.println(s2);             // abc
-    System.out.println(s3);             // ABC
+        System.out.println(s1);             // abcdef
+        System.out.println(s2);             // abc
+        System.out.println(s3);             // ABC
 
 
 Objektfabrik
