@@ -1,7 +1,5 @@
+# DV017A -- Inledande Programmering i Java
 # Studieanteckningar
-
-
-**DV017A - Inledande Programmering i Java**
 
 
 | Jonas Sjöberg
@@ -12,12 +10,12 @@
 
 
 
-
 ### Abstrakt:
   Anteckningar baserade på powerpoint-slides konverterade från ".ppt" till
   textbaserade format, därefter utökade och/eller modifierade med eget material.
   Detta är mina Egna studie-/föreläsningsanteckningar och kan således mycket
-  väl innehålla faktafel. Dokumentet uppdateras löpande.
+  väl innehålla faktafel. Dokumentet uppdateras löpande under kursens gång.
+
 
 ### Licensiering:
 |  Creative Commons Non-Commercial Share Alike 3.0
@@ -39,30 +37,30 @@ Om programmering och problemlösning
 Användningsområden och typer av arbetsuppgifter:
 
 * Problemlösning och beräkningar:
-    + raketbanor
-    + hållfasthet
-    + växthuseffekten
+    + Raketbanor
+    + Hållfasthet
+    + Växthuseffekten
 
 * Administration, hantering av data:
-    + löner
-    + formulär
-    + order och lager
+    + Löner
+    + Formulär
+    + Order och lager
 
 * Simulering
-    + spice
-    + fysik
-    + matematik
+    + Spice
+    + Fysik
+    + Matematik
 
 * Grafik
-    + visualisering
-    + spel
+    + Visualisering
+    + Spel
 
 * Fler områden?
     + Multimedia
     + ..
 
 
-Två fundament:
+### Två fundament:
 
 + **Datastruktur** (objekt)
     + Representation av data i datorns minne.
@@ -78,7 +76,7 @@ Två fundament:
 Datastrukturer
 --------------
 
-Hur ska vi representera information som:
+Hur ska vi representera information som t.ex:
 
 * Antal dagar?
 * Lön?
@@ -113,8 +111,8 @@ Värden och typer
 
 I java finns två huvudtyper av värden:
 
-1. *Primitiva värden*, inbyggda i språket
-2. *Referenser*, referensvärden (adresser till objekt)
+1. **Primitiva värden** -- Inbyggda i språket
+2. **Referenser** -- Referensvärden (adresser till objekt)
 
 Alla värden har en väldefinierad typ.
 
@@ -154,42 +152,61 @@ Inbyggda värdetyper (fördefinierade) kan delas in i:
 Heltalstyper
 ------------
 
-Hanterar heltalsvärden och variabler.
-
-Heltalstyper: `byte`, `short`, `int`, `long`
+Heltalstyperna `byte`, `short`, `int` och `long` hanterar heltalsvärden och
+variabler.
 
 * Typerna väljs beroende på storlek och effektivitet.
 * Normalt används typen `int`.
 
+
 ### `byte`
-Typen `byte` är ett 8-bitars signerat tvåkomplements heltal med ett minvärde på
--128 och ett maxvärde på 127 (inkluderande).
-`Byte` typen kan vara användbar för att spara minnesanvändning i stora arrayer.
-Det begränsade tal som kan lagras kan också indikera tänkt användning och bidra
-till en "självdokumenterande" kod.
+
+* Typen `byte` är ett 8-bitars signerat tvåkomplements heltal med ett minvärde
+  på $-128$ och ett maxvärde på $127$ (inkluderande).
+
+* `Byte` typen kan vara användbar för att spara minnesanvändning i stora
+  arrayer.
+
+* Det begränsade tal som kan lagras kan också indikera tänkt användning och
+  bidra till en "självdokumenterande" kod.
+
 
 ### `short`
-Typen `short` är ett 16-bitars signerat tvåkomplements heltal med ett minvärde
-på -32,768 och ett maxvärde på 32,767 (inkluderande).
-Riktlinjer lika som de för `byte`, använd för att spara minne i sammanhang där
-minnesanvändningen faktiskt spelar roll.
+
+* Typen `short` är ett 16-bitars signerat tvåkomplements heltal med ett
+  minvärde på $-32,768$ och ett maxvärde på $32,767$ (inkluderande).
+
+* Riktlinjer lika som de för `byte`, använd för att spara minne i sammanhang
+  där minnesanvändningen faktiskt spelar roll.
+
 
 ### `int`
-Typen `int` är ett 32-bitars signerat tvåkomplements heltal med ett minvärde på
--2^31 och ett maxvärde på 2^31 - 1. I *Java SE 8* och senare kan `int` användas
-som en `unsigned` 32-bitars heltal, med ett minvärde på 0 och ett maxvärde på
-2^32 - 1.
-Använd *Integer*-klassen för att använda `int` typen som en `unsigned int`.
-Klassen innehåller en del metoder för att göra t.ex. jämförelser.
+
+* Typen `int` är ett 32-bitars signerat tvåkomplements heltal med ett minvärde
+  på $-2^{31}$ och ett maxvärde på $2^{31} - 1$.
+
+* I *Java SE 8* och senare kan `int` användas som en `unsigned` 32-bitars
+  heltal, med ett minvärde på 0 och ett maxvärde på $2^{32} - 1$.
+
+* Använd *Integer*-klassen för att använda `int` typen som en `unsigned int`.
+  Klassen innehåller en del metoder för att göra t.ex. jämförelser.
+
 
 ### `long`
-Typen `long` är ett 64-bitars tvåkomplements heltal.
-Den signerade varianten har värden mellan -2^63 och 2^63 - 1.
-I *Java SE 8* och senare kan `long` användas för att representera en
-`unsigned` 64-itars `long`, med värden mellan 0 och 2^64 - 1.
-Den här typen ska användas då omfånget av typen `int` inte räcker till.
-Klassen *Long* innehåller metoder som `compareUnsigned`, `divideUnsigned`, etc,
-för att stödja aritmetiska operationer på `unsigned long`.
+
+* Typen `long` är ett 64-bitars tvåkomplements heltal.
+
+* Den signerade varianten har värden mellan $-2^{63}$ och $2^{63} - 1$.
+
+* I *Java SE 8* och senare kan `long` användas för att representera en
+  `unsigned` 64-itars `long`, med värden mellan $0$ och $2^{64} - 1$.
+
+* Den här typen ska användas då omfånget av typen `int` inte räcker till.
+
+* Klassen *Long* innehåller metoder som `compareUnsigned`, `divideUnsigned`,
+  etc, för att stödja aritmetiska operationer på `unsigned long`.
+
+
 
 Refererens för detaljer: [Primitive Data Types, Oracle Java Documentation]
 
@@ -200,24 +217,36 @@ https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
 Flyttalstyper
 -------------
 
-Hanterar flytttal (decimala tal).
-
-Flyttalstyper: `float`, `double`
+Flyttalstyperna `float` och `double` hanterar flytttal (decimala tal).
 
 * Typerna väljs beroende på storlek och effektivitet.
 * Normalt används typen `double`
 
+
 ### `float`
+
 * Typen `float` är ett "single-precision 32-bit *IEEE 754* floating point" tal.
-* Möjliga värden, se [Floating-Point Types, Formats, and Values, Java Language Specification].
-* Har lägre precision än `double` och är snabbare.
+
+* För möjliga värden, se [Floating-Point Types, Formats, and Values, Java
+  Language Specification].
+
+* Har lägre precision än `double` men är snabbare.
+
 * Räkna med 7 siffrors noggrannhet (decimaler)
 
+
 ### `double`
-* Typen `double` är ett "double-precision 64-bit *IEEE 754* floating point" tal.
-* Möjliga värden, se [Floating-Point Types, Formats, and Values, Java Language Specification].
+
+* Typen `double` är ett "double-precision 64-bit *IEEE 754* floating point"
+  tal.
+
+* För möjliga värden, se [Floating-Point Types, Formats, and Values, Java
+  Language Specification].
+
 * Den här typen är generellt standardvalet för decimaltal.
-* `double` har högre precision än `float`
+
+* `double` har högre precision än `float`.
+
 * Räkna med 15 siffrors noggrannhet (decimaler)
 
 
@@ -239,33 +268,37 @@ Teckenvärde/typ
         innehåller ASCII i den "lägre" delen.
         Den internationella motsvarigheten till ACSII är *ISO 646-IRV*.
 
-        Kompakt tabell från 'man ascii' i Release 3.74 av Linux man-pages
-        project, [ASCII(7) -- Linux Programmer's Manual]:
 
+    + Kompakt tabell från Release 3.74 av Linux man-pages project:
 
+        ```
+           2 3 4 5 6 7       30 40 50 60 70 80 90 100 110 120
+         -------------      ---------------------------------
+        0:   0 @ P ` p     0:    (  2  <  F  P  Z  d   n   x
+        1: ! 1 A Q a q     1:    )  3  =  G  Q  [  e   o   y
+        2: " 2 B R b r     2:    *  4  >  H  R  \  f   p   z
+        3: # 3 C S c s     3: !  +  5  ?  I  S  ]  g   q   {
+        4: $ 4 D T d t     4: "  ,  6  @  J  T  ^  h   r   |
+        5: % 5 E U e u     5: #  -  7  A  K  U  _  i   s   }
+        6: & 6 F V f v     6: $  .  8  B  L  V  `  j   t   ~
+        7: ´ 7 G W g w     7: %  /  9  C  M  W  a  k   u  DEL
+        8: ( 8 H X h x     8: &  0  :  D  N  X  b  l   v
+        9: ) 9 I Y i y     9: ´  1  ;  E  O  Y  c  m   w
+        A: * : J Z j z
+        B: + ; K [ k {
+        C: , < L \ l |
+        D: - = M ] m }
+        E: . > N ^ n ~
+        F: / ? O _ o DEL
+        ```
 
-               2 3 4 5 6 7       30 40 50 60 70 80 90 100 110 120
-             -------------      ---------------------------------
-            0:   0 @ P ` p     0:    (  2  <  F  P  Z  d   n   x
-            1: ! 1 A Q a q     1:    )  3  =  G  Q  [  e   o   y
-            2: " 2 B R b r     2:    *  4  >  H  R  \  f   p   z
-            3: # 3 C S c s     3: !  +  5  ?  I  S  ]  g   q   {
-            4: $ 4 D T d t     4: "  ,  6  @  J  T  ^  h   r   |
-            5: % 5 E U e u     5: #  -  7  A  K  U  _  i   s   }
-            6: & 6 F V f v     6: $  .  8  B  L  V  `  j   t   ~
-            7: ´ 7 G W g w     7: %  /  9  C  M  W  a  k   u  DEL
-            8: ( 8 H X h x     8: &  0  :  D  N  X  b  l   v
-            9: ) 9 I Y i y     9: ´  1  ;  E  O  Y  c  m   w
-            A: * : J Z j z
-            B: + ; K [ k {
-            C: , < L \ l |
-            D: - = M ] m }
-            E: . > N ^ n ~
-            F: / ? O _ o DEL
+        [ASCII(7) -- Linux Programmer's Manual]
+
+    + Idag används oftast inte ASCII!
 
 
 * Typen `char` är ett 16-bitars *Unicode*-tecken. Det har ett minvärde på
-    `\u0000` (decimalt 0) och ett maxvärde på `\uFFFF` (65.535 inklusivt).
+    `\u0000` (decimalt $0$) och ett maxvärde på `\uFFFF` ($65.535$ inklusivt).
 
 [ASCII(7) -- Linux Programmer's Manual]:
 http://man7.org/linux/man-pages/man7/ascii.7.html
@@ -274,11 +307,13 @@ Sanningsvärde/typ
 -----------------
 
 * Typen `boolean` hanterar sanningsvärden, två möjliga; sant eller falskt.
-* Typen används för enkla "flaggor" som sparar sant/falskt- förhållanden.
-* `boolean` representerar en bit av information men dess faktiska
-    storlek är inte precist definierad.
 
-* Fås som resultat av jämförelser och logiska operationer, ex: `if (a > b)`
+* Typen används för enkla "flaggor" som sparar sant/falskt- förhållanden.
+
+* `boolean` representerar en bit av information men dess faktiska
+    storlek är inte precist definierad i Java.
+
+* Fås som resultat av jämförelser och logiska operationer, t.ex: `if (a > b)`
 
 
 Konstanta värden - literaler
@@ -287,14 +322,14 @@ Konstanta värden - literaler
 * När man i programkod skriver ett literalt värde får den en typ (default):
 
 
-    |   exempelvärden   | defaulttyp |
-    |:-----------------:|:-----------|
-    | `1 2 8865 -45`    | int        |
-    | `0.5 .55 78.`     | double     |
-    | `4.6E23 1.0e-100` | double     |
+    |      exempelvärden      | defaulttyp |
+    |:------------------------|-----------:|
+    | `1`, `2`, `8865`, `-45` | int        |
+    | `0.5`, `.55`, `78.`     | double     |
+    | `4.6E23`, `1.0e-100`    | double     |
 
 
-* Man kan även bestämma typ:
+* Man kan även uttryckligen bestämma typ:
 
         123L  (long)
         3.14F (float)
@@ -303,73 +338,90 @@ Konstanta värden - literaler
 Andra talbaser för konstanter
 -----------------------------
 
-Ibland är det lämpligt att använda t.ex. **hexadecimal** form:
+* Ibland är det lämpligt att använda t.ex. **hexadecimal** form:
 
-|   Hex    | Dec  |
-|----------|------|
-| `0x0A`   | 10   |
-| `0xFF`   | 255  |
-| `0x1000` | 4096 |
-
-
-Eller **oktal** form:
-
-|  Oct   | Dec  |
-|--------|------|
-| `010`  |  8   |
-| `011`  |  9   |
-| `012`  |  10  |
-| `0100` |  64  |
+    |   Hex    | Dec  |
+    |----------|------|
+    | `0x0A`   | 10   |
+    | `0xFF`   | 255  |
+    | `0x1000` | 4096 |
 
 
-Anledning är "direktmappningen" till binära tal:
+* Eller **oktal** form:
 
-|  Hex   |   Binärt    |
-|--------|-------------|
-| `0x11` | `0001 0001` |
-| `0xFF` | `1111 1111` |
-| `0x1F` | `0001 1111` |
-| `0xF1` | `1111 0001` |
+    |  Oct   | Dec  |
+    |--------|------|
+    | `010`  |  8   |
+    | `011`  |  9   |
+    | `012`  |  10  |
+    | `0100` |  64  |
+
+
+* Anledning är "direktmappningen" till binära tal:
+
+    |  Hex   |   Binärt    |
+    |--------|-------------|
+    | `0x11` | `0001 0001` |
+    | `0xFF` | `1111 1111` |
+    | `0x1F` | `0001 1111` |
+    | `0xF1` | `1111 0001` |
+
+
+* Tal lämpade för "bitmasking"-tekniker:
+
+    |  Hex   |   Binärt    |
+    |--------|-------------|
+    | `0x01` | `0000 0001` |
+    | `0x02` | `0000 0010` |
+    | `0x04` | `0000 0100` |
+    | `0x08` | `0000 1000` |
+    | `0x10` | `0001 0000` |
+    | `0x20` | `0010 0000` |
+    | `0x40` | `0100 0000` |
+    | `0x80` | `1000 0000` |
 
 
 Variabler för primitiva värden
 ------------------------------
 
 * För varje primitiv typ kan deklareras motsvarande variabler
-* Symboler som "minns" värden. D.v.s. namngivna minnesceller.
+* Symboler som "minns" värden, d.v.s. namngivna minnesceller.
 * Variablernas värden kan givetvis förändras. Detta sker med tilldelningar.
 
 ###  Exempel:
 
-    summa = 1250;
+```
+summa = 1250;
+```
 
-  Variabeln summa innehåller nu värdet 1250
+Variabeln summa innehåller nu värdet $1250$.
 
 
 Deklaration av variabler
 ------------------------
 
-* Variabler har alltid en typ
-* Måste deklareras innan de används
+* Variabler har alltid en typ.
+* Måste deklareras innan de används!
 
-Java har *statisk typning*, variabler tilldelas en datatyp vid kompilering.
-Variabeln behåller typen under resten av dess livslängd.
-Språk som *C*, *C++,* *Java* och *Pascal* är statiskt typade.
+* Java har *statisk typning*, variabler tilldelas en datatyp vid kompilering.
+    + Variabeln behåller typen under resten av dess livslängd.
+    + Språk som *C*, *C++,* *Java* och *Pascal* är statiskt typade.
 
 
-> "Java is both a statically and strongly typed language. The term static refers
-> to compile time or the source code, whereas dynamic refers to the runtime or
-> the bytecode. A programming language is said to use static typing when type
-> checking is performed during compile time as opposed to runtime. In static
-> typing, all expressions have their types determined at compile time, prior to
-> when the program is executed. The word strong in the context of typing means
-> that rules about the typesystem are enforced prior to the code being run. Thus,
-> Java is considered to be both statically and strongly typed."
->
->
->  *Java Programming Learn Advanced Skills From a Java Expert*
->
->  Poornachandra Sarang, Orace Press 2012
+    > "Java is both a statically and strongly typed language. The term static refers
+    > to compile time or the source code, whereas dynamic refers to the runtime or
+    > the bytecode. A programming language is said to use static typing when type
+    > checking is performed during compile time as opposed to runtime. In static
+    > typing, all expressions have their types determined at compile time, prior to
+    > when the program is executed. The word strong in the context of typing means
+    > that rules about the typesystem are enforced prior to the code being run. Thus,
+    > Java is considered to be both statically and strongly typed."
+    >
+    >
+    >  *Java Programming Learn Advanced Skills From a Java Expert*
+    >
+    >  Poornachandra Sarang, Orace Press 2012
+
 
 ### Syntax:
 
@@ -384,37 +436,38 @@ Språk som *C*, *C++,* *Java* och *Pascal* är statiskt typade.
 Variablers räckvidd (scope)
 ---------------------------
 
-Variablerna existerar endast i det kodblock där de har deklarerats.
+* Variablerna existerar endast i det kodblock där de har deklarerats.
 
-```java
-.- foo {
-|      int i = 7;
-|      // Här är 'i' åtkomlig
-'- }
-// Utanför blocket kommer man inte åt det 'i' som deklarerats inuti blocket.
-```
+    ```java
+    foo
+    {
+        int i = 7;
+        // Här är 'i' åtkomlig
+    }
+    // Utanför blocket kommer man inte åt det 'i' som deklarerats inuti blocket.
+    ```
 
 * Olika scope -- *överskuggning*
 
     ```java
-    .- foo {
-    |
-    |  .- bar {
-    |  |
-    |  |      int i = 100;
-    |  |      // Här kommer vi åt 'i' med värdet 100.
-    |  |
-    |  |  .- baz {
-    |  |  |
-    |  |  |      int i = 7;
-    |  |  |      // Här inne kommer vi åt 'i' med värdet 7.
-    |  |  '- }
-    |  |
-    |  |      // Här kommer vi åt 'i' med värdet 100.
-    |  '- }
-    |
-    |      // Här kommer vi inte åt något 'i' alls.
-    '- }
+    foo
+    {
+        bar
+        {
+            int i = 100;
+            /* Här kommer vi åt 'i' med värdet 100. */
+
+            baz
+            {
+                int i = 7;
+                /* Här inne kommer vi åt 'i' med värdet 7. */
+            }
+
+            /* Här kommer vi åt 'i' med värdet 100. */
+        }
+
+        /* Här kommer vi inte åt något 'i' alls. */
+    }
     ```
 
 
@@ -422,134 +475,145 @@ Olika typer av variabler och scope
 ----------------------------------
 
 * **Instansvariabler** (attribut)
-    + Scopet gäller i hela objektet
+    + Scopet gäller i hela objektet.
 
 
 * **Lokala variabler**
-    + Scopet gäller i en metod eller i ett inre block
+    + Scopet gäller i en metod eller i ett inre block.
 
 
 * **Parametervariabler** får sitt värde vid metodanrop.
     + Scopet gäller lokalt i metoden.
 
-```java
-        .- foo(int a) {
-        |      // här finns 'a'
-        '- }
-```
+        ```java
+        foo(int a)
+        {
+            /* Här finns 'a'. */
+        }
+        ```
 
 
 * **Klassvariabler**
     + Gäller i hela klassen och är samma för alla objekt av den klassen.
 
-```java
-           Class X
-        .- {
-        |      private int instansmedlem  = 10;
-        |      private static klassmedlem = 20;
-        |
-        |      .- public void metod1(int parameter) {
-        |      |      int lokal = 25;
-        |      '- }
-        |
-        |      .- public void metod2(int parameter) {
-        |      |      int lokal = 26;
-        |      '- }
-        '- }
-```
+        ```java
+        Class X
+        {
+            private int instansmedlem  = 10;
+            private static klassmedlem = 20;
+
+            public void metod1(int parameter)
+            {
+                int lokal = 25;
+            }
+
+            public void metod2(int parameter)
+            {
+                int lokal = 26;
+            }
+        }
+        ```
 
 
 Uttryck (expressions)
 ---------------------
 
 * Ett program som exekverar kan beräkna värden.
+
 * De delar av programkoden som gör beräkningar av värden kallas "uttryck".
+
 * Ett uttryck kan innehålla konstanta (literala) värden och variabler kombinerade
-  med operatorer ( + - * / % )
+  med operatorer; `+` `-` `*` `/` `%`.
 
-Alla beräknade värden får en typ (någon av de vi studerat)
-Numeriska värden kan inte blandas med t.ex. sanningsvärden:
+* Alla beräknade värden får någon av de typer vi har studerat.
 
-    10 * 9 + true (felaktigt)
+* Numeriska värden kan inte blandas med t.ex. sanningsvärden.
+
+    ```
+    10 * 9 + true   (Felaktigt!)
+    ```
 
 
 Numeriska uttryck
 -----------------
 
-Kombinationer av konstanter, variabler och aritmetiska operatorer. T.ex:
+* Kombinationer av konstanter, variabler och aritmetiska operatorer.
 
-```java
-int a = 2, b = 8;
-((a + b) * 10) / 5;
-```
+    ```java
+    int a = 2, b = 8;
+    ((a + b) * 10) / 5;
+    ```
 
-Beräknas enligt prioritetsregler som bestäms av de ingående operatorerna.
-Parentes-par har högst prioritet.
+* Beräknas enligt prioritetsregler som bestäms av de ingående operatorerna.
+  - Parentes-par har högst prioritet.
 
-```java
-(10 * 10) / 5
-100 / 5
-20
-```
+    ```java
+    (10 * 10) / 5
+    100 / 5
+    20
+    ```
 
 
 Aritmetiska operatorer (numeriska)
 ----------------------------------
 
-* Aritmetiska operatorer: `+ - * / % ++ --`
+Aritmetiska operatorer: `+ - * / % ++ --`
 
 
-Operator    Funktion        Beskrivning
---------    --------        -----------
-`%`         modulus         ger rest vid heltalsdivision
-`++`        inkrement       ökar en heltalsvariabel ett steg
-`--`        dekrement       minskar en heltalsvariabel ett steg
-`++a`       prefix          uppräkning sker *innan* värdet hämtas
-`a++`       postfix         uppräkning sker *efter* att värdet hämtats
+| Operator | Funktion  | Beskrivning                                 |
+|:--------:|:---------:|:--------------------------------------------|
+| `%`      | modulus   | Ger rest vid heltalsdivision.               |
+| `++`     | inkrement | Ökar en heltalsvariabel ett steg.           |
+| `--`     | dekrement | Minskar en heltalsvariabel ett steg.        |
+| `++a`    | prefix    | Uppräkning sker *innan* värdet hämtas.      |
+| `a++`    | postfix   | Uppräkning sker *efter* att värdet hämtats. |
 
 
 ### Exempel på användning av modulus:
 
 * Enkel rest vid heltalsdivision:
 
-```java
+    ```java
     10 % 7 == 3
-```
+    ```
 
-* Begränsa variabel till ett visst område. Begränsa `i` till 0-10:
+* Begränsa variabel till ett visst område. Här begränsas `i` till $0-10$:
 
-```java
+    ```java
     int a[10];
 
     for (int i = 0; true; i = (i + 1) % 10) {
         /* .. använd a[i] .. */
     }
-```
+    ```
 
 * Omvandla tid i sekunder till timmar, minuter och sekunder:
 
-```java
+    ```java
     timmar   =  sekunder / 3600;
     minuter  = (sekunder / 60) % 60;
     sekunder =  sekunder % 60;
-```
+    ```
 
 * Begränsa `x` till att vara en multipel av 10:
 
-```java
+    ```java
     temp = x - (x % 10);
-```
+    ```
 
 
 Logiska uttryck
 ---------------
 
-Logiska uttryck är Kombinationer av sanningsvärden (konstanter och variabler)
-och logiska operatorer: `!`, `&&`, `||`
+Logiska uttryck är kombinationer av sanningsvärden (konstanter och variabler)
+och *logiska operatorer*: `!`, `&&` och  `||`
+
+### Exempel:
 
 ```java
 (hungry && dinnerTime) || candy
 ```
+
 
 Sanningsvärden uppstår även med jämförelseoperatorer:
 `==`, `>`, `<`, `>=`, `<=`, `!=`
@@ -564,24 +628,187 @@ myShoeSize  !=  myShoes
 * Observera att operanderna till jämförelseoperatorerna är numeriska värden!
 
 
+### Logiska operatorer
+
+| Operator | Funktion  | Beskrivning                                       |
+|:--------:|:---------:|:--------------------------------------------------|
+| `!`      | icke      | Logisk negation.                                  |
+| `&`      | AND (och) | *true* om båda sidor är *true*, annars *false*.   |
+|          |           | Verifierar båda operander.                        |
+| `&&`     | AND (och) | *true* om båda sidor är *true*, annars *false*.   |
+|          |           | Avbryter utvärderingen om vänster sida är *true*. |
+| `|`      | OR (eller)| *true* om minst en sida är *true*, annars *false*.|
+|          |           | Verifierar båda operander.                        |
+| `||`     | OR (eller)| *true* om minst en sida är *true*, annars *false*.|
+|          |           | Avbryter utvärderingen om vänster sida är *true*. |
+
+
+`AND`*/och*-operatorn
+-------------------
+
+**`&&`** (dubbelt och-tecken) är "och"-operatorn som returnerar *true* om både
+uttrycket till vänster och till höger om operatorn är *true*, annars *false*.
+
+Beräkningen utförs med *lat beräkning* (lazy evaluation):
+Om uttrycket till vänster är *falskt*, så beräknas inte det högra uttrycket.
+
+Detta kan vara användbart om man vill skriva en test där det högra uttrycket
+är giltigt endast om det vänstra uttrycket är *sant*:
+
+```java
+a != null && a.full()
+```
+
+
+**Referens**: [nada.kth.se: Svensk Javaterminologi]
+
+
+### Skillnaden mellan `&` och `&&`
+
+* **`&`**
+
+    + boolean logical `AND`
+    + **inte** "kortslutande"
+    + Verifierar alltid båda operander.
+    + Exempel på situation där det spelar roll:
+    
+        ```java
+        (x != 0) & (1/x > 1)    /* FARLIGT! Division med 0! */
+        ```
+
+
+* **`&&`**
+
+    + logical `AND`
+    + "Kortslutande"
+    + Slutar utvärdera om den första operanden ger *falskt* då resultatet ändå
+      blir *falskt*.
+    + Exempel på situation där det spelar roll:
+    
+        ```java
+        (x != 0) && (1/x > 1)   /* Undviker division med 0. */
+        ```
+
+**Referenser**:
+
+[Stackoverflow: Difference between & and &&]
+
+[Stackoverflow: Difference between & and && in Java?]
+
+
+### Exempel för `&`
+
+```java
+(x != 0) & (1/x > 1)
+```
+
+* Utvärdera `(x != 0)`, utvärdera sedan `(1/x > 1)` och utför till sist `&`.
+* Problematiskt att ett "särfall" (exception) genereras om `x = 0`!
+
+
+### Exempel för `&&`
+
+```java
+(x != 0) && (1/x > 1)
+```
+
+* Utvärdera `(x != 0)` och om det är *sant*
+
+    - Gå vidare till att utvärdera `(1/x > 1)`.
+
+* Klarar av fallet `x = 0` bättre då `(x != 0)` returnerar *falskt* och körningen
+  avslutas uatn att `(1/x > 1)` testas.
+
+
+`OR`*/eller*-operatorn
+--------------------
+
+**`||`** (dubbelt lodstreck) är "eller"-operatorn som returnerar *true* om
+minst ett av uttrycken till vänster och till höger om operatorn är *true*,
+annars *false*.
+
+Beräkningen utförs med lat beräkning (lazy evaluation): Om uttrycket till
+vänster är *sant*, så beräknas inte det högra uttrycket.
+
+Detta kan vara användbart om man vill skriva en test där det högra uttrycket är
+giltigt endast om det vänstra uttrycket är falskt:
+
+```java
+i == 0 || j/i > 8
+```
+
+* Referens:
+    
+    [Svensk Javaterminologi]
+
+
+### Skillnaden mellan `|` och `||`
+
+> * `|` does not do short-circuit evaluation in boolean expressions. 
+> 
+> * `||` will stop evaluating if the first operand is true, but `|` won't.
+> 
+> * In addition, `|` can be used to perform the bitwise-`OR` operation on
+>   `byte`/`short`/`int`/`long` values.  `||` cannot.
+
+[Stackoverflow: Why do we usually use `||` not `|`, what is the difference?]
+
+### Exempel för `|`
+
+```java
+exprA | exprB
+```
+* Utvärdera `exprA`, sedan utvärderas `exprB` och `|`.
+
+
+### Exempel för `||`
+
+```java
+exprA || exprB
+```
+
+* Utvärdera `exprA` och om det ger *falskt*
+
+    - Utvärdera `exprB` och `||`.
+
+
+
+[nada.kth.se: Svensk Javaterminologi]:
+https://www.nada.kth.se/datorer/haften/javaterminologi.html
+
+[Stackoverflow: Difference between & and && in Java?]:
+http://stackoverflow.com/q/7199666
+
+[Stackoverflow: Why do we usually use `||` not `|`, what is the difference?]:
+http://stackoverflow.com/q/7101992
+
+[Stackoverflow: Difference between & and &&]:
+http://stackoverflow.com/q/5564410
+
+
 Tilldelningsuttryck
 -------------------
 
 ### Syntax:
 
-    variabelnamn = uttryck;
+```
+variabelnamn = uttryck;
+```
 
 ### Semantik:
 
 * Vänstersidan måste vara en variabel.
 * Högersidan evalueras först och måste vara ett uttryck (värde). Exempel:
 
-        a = 67 * 41 + 19  6;
+    ```
+    a = 67 * 41 + 19  6;
+    ```
 
   Tilldelningen är ett uttryck i sig vilket tillåter: `a = b = c = 100 * 99;`
 
 
 * Finns i flera versioner kombinerade med aritmetiska operatorer;
+
     `+=`, `-=`, `*=`, `/=`, `%=`
 
     **Exempel:**
@@ -600,8 +827,8 @@ Tilldelningsuttryck och typomvandlingar
 
 Typer har olika rang: t.ex. har `double` högre rang än `int`.
 
-Ett värde med lägre rang kan alltid tilldelas en variabel med högre rang
-eftersom den lägre rangens typ utgör en delmängd av den högre, t.ex:
+Ett värde med *lägre* rang kan alltid tilldelas en variabel med *högre* rang
+eftersom den *lägre rangens typ utgör en delmängd av den högre*, t.ex:
 
 ```java
 double d = 3;
@@ -610,58 +837,58 @@ double d = 3;
 Men inte tvärtom eftersom man förlorar precision:
 
 ```java
-int i = 3.14;               // Ger kompileringsfel.
+int i = 3.14;               /* Ger kompileringsfel. */
 ```
 
-Vi kan lösa det genom att göra en explicit typkonvertering (cast), t.ex:
+Vi kan lösa det genom att göra en explicit typkonvertering (*cast*), t.ex:
 
 ```java
-int i = (int)3.14;          // Görs om till 3.
+int i = (int)3.14;          /* Görs om till 3. */
 ```
 
 
 Uttryck med metodanrop
 ----------------------
 
-I ett uttryck kan metoder anropas om de 'returnerar' ett värde (funktioner).
+* I ett uttryck kan metoder anropas om de 'returnerar' ett värde (funktioner):
 
 ```java
 volume = circleaArea(15.0) * height;
 ```
 
-Om en metod är deklarerad som '`void`' och således inte returnerar något värde
-får ett sådant metodanrop inte ingå i ett uttryck.
+* Om en metod är deklarerad som '`void`' och således inte returnerar något värde
+  får ett sådant metodanrop **inte** ingå i ett uttryck.
 
-### Felaktigt:
+    Följande är felaktigt:
 
-```java
-a = skrivUt("Jocke") + 100;
-```
+    ```java
+    a = skrivUt("Jocke") + 100;
+    ```
 
 
 Konstanta "variabler"
 ---------------------
 
-Modifierare *final* vid deklaration av variabler.
+* Modifierare *final* vid deklaration av variabler.
 
-```java
-final int KATTLIV = 9;
-final double PI = 3.141592;
-```
+    ```java
+    final int KATTLIV = 9;
+    final double PI = 3.141592;
+    ```
 
-Dessa kan endast tilldelas ett värde EN gång.
+* Dessa kan endast tilldelas ett värde EN gång.
 
-```java
-final int UNDERVERK;
-UNDERVERK = 7;
-```
+    ```java
+    final int UNDERVERK;
+    UNDERVERK = 7;
+    ```
 
-Använd konstanter istället för explicita 'siffror' i programkod.
+* Använd konstanter istället för explicita 'siffror' i programkod.
 
-* Om förutsättningarna förändras inför man förändringen på ett ställe
-  istället för att göra det på många ställen.
-* Lättare att förstå programkoden.
-* Mindre risk för fel i programmet p.g.a. ofullständiga ändringar.
+    * Om förutsättningarna förändras inför man förändringen på ett ställe
+      istället för att göra det på många ställen.
+    * Lättare att förstå programkoden.
+    * Mindre risk för fel i programmet p.g.a. ofullständiga ändringar.
 
 
 --------------------------------------------------------------------------------
@@ -1589,9 +1816,9 @@ String - metoder
 * Ny eller ändrad text läggs automatiskt i nya objekt.
 
     ```java
-    String s1 = new String( "abcedf" );         // s1 ---> abcdef
+    String s1 = new String("abcedf");           // s1 ---> abcdef
 
-    String s2 = s1.substring( 0, 3 );           // s2 ---> abc
+    String s2 = s1.substring(0, 3);             // s2 ---> abc
 
     String s3 = s2.toUpperCase();               // s3 ---> ABC
 
@@ -2494,7 +2721,7 @@ Algoritm i pseudokod
 >     * Sortera sätts till **falskt**
 >     * Upprepa för element `e = 1` till `e = N-1`
 >         * Om `array[e]` > `array[e+1]`
->             * Byt plats på element $e$ och $e+1$
+>             * Byt plats på element `e` och `e+1`
 >             * Sortera sätts till sant.
 
 
@@ -2502,9 +2729,9 @@ Algoritm i Java-kod
 -------------------
 
 ```java
-Att skicka en array som parameter till en metod! ---.
-                                                    |
-public void sortera(double [] array)  <-------------'
+Att skicka en array som parameter till en metod! --.
+                                                   |
+public void sortera(double [] array)  <------------'
 {
     boolean sortera = true;
     final int N     = array.length;
@@ -2530,96 +2757,110 @@ Körning
 
 ### Första iterationen
 
-    [5] [2]  9   3   7   6   1   0   8   4
+```
+[5] [2]  9   3   7   6   1   0   8   4
 
-     2   5  [9] [3]  7   6   1   0   8   4
+ 2   5  [9] [3]  7   6   1   0   8   4
 
-     2   5   3  [9] [7]  6   1   0   8   4
+ 2   5   3  [9] [7]  6   1   0   8   4
 
-     2   5   3   7  [9] [6]  1   0   8   4
+ 2   5   3   7  [9] [6]  1   0   8   4
 
-     2   5   3   7   6  [9] [1]  0   8   4
+ 2   5   3   7   6  [9] [1]  0   8   4
 
-     2   5   3   7   6   1  [9] [0]  8   4
+ 2   5   3   7   6   1  [9] [0]  8   4
 
-     2   5   3   7   6   1   0  [9] [8]  4
+ 2   5   3   7   6   1   0  [9] [8]  4
 
-     2   5   3   7   6   1   0   8  [9] [4]
+ 2   5   3   7   6   1   0   8  [9] [4]
 
-     2   5   3   7   6   1   0   8   4   9
+ 2   5   3   7   6   1   0   8   4   9
+```
 
 
 ### Andra iterationen
 
-    2  [5] [3]  7   6   1   0   8   4   9
+```
+2  [5] [3]  7   6   1   0   8   4   9
 
-    2   3   5  [7] [6]  1   0   8   4   9
+2   3   5  [7] [6]  1   0   8   4   9
 
-    2   3   5   6  [7] [1]  0   8   4   9
+2   3   5   6  [7] [1]  0   8   4   9
 
-    2   3   5   6   1  [7] [0]  8   4   9
+2   3   5   6   1  [7] [0]  8   4   9
 
-    2   3   5   6   1   0   7  [8] [4]  9
+2   3   5   6   1   0   7  [8] [4]  9
 
-    2   3   5   6   1   0   7   4   8   9
+2   3   5   6   1   0   7   4   8   9
+```
 
 
 ### Tredje iterationen
 
-    2   3   5  [6] [1]  0   7   4   8   9
+```
+2   3   5  [6] [1]  0   7   4   8   9
 
-    2   3   5   1  [6] [0]  7   4   8   9
+2   3   5   1  [6] [0]  7   4   8   9
 
-    2   3   5   1   0   6  [7] [4]  8   9
+2   3   5   1   0   6  [7] [4]  8   9
 
-    2   3   5   1   0   6   4   7   8   9
+2   3   5   1   0   6   4   7   8   9
+```
 
 
 ### Fjärde iterationen
 
-    2   3  [5] [1]  0   6   4   7   8   9
+```
+2   3  [5] [1]  0   6   4   7   8   9
 
-    2   3   1  [5] [0]  6   4   7   8   9
+2   3   1  [5] [0]  6   4   7   8   9
 
-    2   3   1   0   5  [6] [4]  7   8   9
+2   3   1   0   5  [6] [4]  7   8   9
 
-    2   3   1   0   5   4   6   7   8   9
+2   3   1   0   5   4   6   7   8   9
+```
 
 
 ### Femte iterationen
 
-    2  [3] [1]  0   5   4   6   7   8   9
+```
+2  [3] [1]  0   5   4   6   7   8   9
 
-    2   1  [3] [0]  5   4   6   7   8   9
+2   1  [3] [0]  5   4   6   7   8   9
 
-    2   1   0   3  [5] [4]  6   7   8   9
+2   1   0   3  [5] [4]  6   7   8   9
 
-    2   1   0   3   4   5   6   7   8   9
+2   1   0   3   4   5   6   7   8   9
+```
 
 
 ### Sjätte iterationen
 
-    [2] [1]  0   3   4   5   6   7   8   9
+```
+[2] [1]  0   3   4   5   6   7   8   9
 
-     1  [2] [0]  3   4   5   6   7   8   9
+ 1  [2] [0]  3   4   5   6   7   8   9
 
-     1   0   2   3   4   5   6   7   8   9
+ 1   0   2   3   4   5   6   7   8   9
+```
 
 
 ### Sjunde iterationen
 
-    [1] [0]  2   3   4   5   6   7   8   9
+```
+[1] [0]  2   3   4   5   6   7   8   9
 
-     0   1   2   3   4   5   6   7   8   9
+ 0   1   2   3   4   5   6   7   8   9
+```
 
 
 Insikter
 --------
 
-* När en array skickas till en metod kan orginalobjektet komma att påverkas
-  eftersom metoden hanterar samma objekt som "omvärlden".
+* När en array skickas till en metod kan *orginalobjektet* komma att påverkas
+  eftersom att *metoden hanterar samma objekt som "omvärlden"*.
 
-* Det är *referensvariabelns värde* som kopieras -- inte array-objektet.
+* Det är **referensvariabelns värde** som kopieras -- inte array-objektet.
 
                    .--------------------.
                    | sortera   (array); |
@@ -4074,4 +4315,5 @@ användas.
 * Dealer
 
 Denna kod kommer att läggas ut...
+
 

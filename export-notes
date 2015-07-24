@@ -1,3 +1,5 @@
 #!/bin/bash
 
-pandoc dv017a-notes.md -o dv017a-notes.pdf
+FLAGS1='--smart --highlight-style=monochrome'
+
+pandoc ${FLAGS1} ${FLAGS2} dv017a-notes.md -o dv017a-notes.pdf
