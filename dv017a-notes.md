@@ -99,8 +99,8 @@ objektorientering i Java:
 ["The progress of abstraction" - Thinking in Java, 3rd ed. Revision 4.0]:
 http://www.linuxtopia.org/online_books/programming_books/thinking_in_java/TIJ303.htm
 
---------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------
 
 
 Föreläsning 2 - Numeriska typer/värden
@@ -386,32 +386,36 @@ Variablers räckvidd (scope)
 
 Variablerna existerar endast i det kodblock där de har deklarerats.
 
-    .- foo {
-    |      int i = 7;
-    |      // Här är 'i' åtkomlig
-    '- }
-    // Utanför blocket kommer man inte åt det 'i' som deklarerats inuti blocket.
+```java
+.- foo {
+|      int i = 7;
+|      // Här är 'i' åtkomlig
+'- }
+// Utanför blocket kommer man inte åt det 'i' som deklarerats inuti blocket.
+```
 
 * Olika scope -- *överskuggning*
 
-        .- foo {
-        |
-        |  .- bar {
-        |  |
-        |  |      int i = 100;
-        |  |      // Här kommer vi åt 'i' med värdet 100.
-        |  |
-        |  |  .- baz {
-        |  |  |
-        |  |  |      int i = 7;
-        |  |  |      // Här inne kommer vi åt 'i' med värdet 7.
-        |  |  '- }
-        |  |
-        |  |      // Här kommer vi åt 'i' med värdet 100.
-        |  '- }
-        |
-        |      // Här kommer vi inte åt något 'i' alls.
-        '- }
+    ```java
+    .- foo {
+    |
+    |  .- bar {
+    |  |
+    |  |      int i = 100;
+    |  |      // Här kommer vi åt 'i' med värdet 100.
+    |  |
+    |  |  .- baz {
+    |  |  |
+    |  |  |      int i = 7;
+    |  |  |      // Här inne kommer vi åt 'i' med värdet 7.
+    |  |  '- }
+    |  |
+    |  |      // Här kommer vi åt 'i' med värdet 100.
+    |  '- }
+    |
+    |      // Här kommer vi inte åt något 'i' alls.
+    '- }
+    ```
 
 
 Olika typer av variabler och scope
@@ -428,27 +432,31 @@ Olika typer av variabler och scope
 * **Parametervariabler** får sitt värde vid metodanrop.
     + Scopet gäller lokalt i metoden.
 
-            .- foo(int a) {
-            |      // här finns 'a'
-            '- }
+```java
+        .- foo(int a) {
+        |      // här finns 'a'
+        '- }
+```
 
 
 * **Klassvariabler**
     + Gäller i hela klassen och är samma för alla objekt av den klassen.
 
-               Class X
-            .- {
-            |      private int instansmedlem  = 10;
-            |      private static klassmedlem = 20;
-            |
-            |      .- public void metod1(int parameter) {
-            |      |      int lokal = 25;
-            |      '- }
-            |
-            |      .- public void metod2(int parameter) {
-            |      |      int lokal = 26;
-            |      '- }
-            '- }
+```java
+           Class X
+        .- {
+        |      private int instansmedlem  = 10;
+        |      private static klassmedlem = 20;
+        |
+        |      .- public void metod1(int parameter) {
+        |      |      int lokal = 25;
+        |      '- }
+        |
+        |      .- public void metod2(int parameter) {
+        |      |      int lokal = 26;
+        |      '- }
+        '- }
+```
 
 
 Uttryck (expressions)
@@ -470,15 +478,19 @@ Numeriska uttryck
 
 Kombinationer av konstanter, variabler och aritmetiska operatorer. T.ex:
 
-    int a = 2, b = 8;
-    ((a + b) * 10) / 5;
+```java
+int a = 2, b = 8;
+((a + b) * 10) / 5;
+```
 
 Beräknas enligt prioritetsregler som bestäms av de ingående operatorerna.
 Parentes-par har högst prioritet.
 
-    (10 * 10) / 5
-    100 / 5
-    20
+```java
+(10 * 10) / 5
+100 / 5
+20
+```
 
 
 Aritmetiska operatorer (numeriska)
@@ -500,25 +512,33 @@ Operator    Funktion        Beskrivning
 
 * Enkel rest vid heltalsdivision:
 
-        10 % 7 == 3
+```java
+    10 % 7 == 3
+```
 
 * Begränsa variabel till ett visst område. Begränsa `i` till 0-10:
 
-        int a[10];
+```java
+    int a[10];
 
-        for (int i = 0; true; i = (i + 1) % 10) {
-            /* .. använd a[i] .. */
-        }
+    for (int i = 0; true; i = (i + 1) % 10) {
+        /* .. använd a[i] .. */
+    }
+```
 
 * Omvandla tid i sekunder till timmar, minuter och sekunder:
 
-        timmar   =  sekunder / 3600;
-        minuter  = (sekunder / 60) % 60;
-        sekunder =  sekunder % 60;
+```java
+    timmar   =  sekunder / 3600;
+    minuter  = (sekunder / 60) % 60;
+    sekunder =  sekunder % 60;
+```
 
 * Begränsa `x` till att vara en multipel av 10:
 
-        temp = x - (x % 10);
+```java
+    temp = x - (x % 10);
+```
 
 
 Logiska uttryck
@@ -527,15 +547,19 @@ Logiska uttryck
 Logiska uttryck är Kombinationer av sanningsvärden (konstanter och variabler)
 och logiska operatorer: `!`, `&&`, `||`
 
-    (hungry && dinnerTime) || candy
+```java
+(hungry && dinnerTime) || candy
+```
 
 Sanningsvärden uppstår även med jämförelseoperatorer:
 `==`, `>`, `<`, `>=`, `<=`, `!=`
 
-    teenager     =  (age >= 13) && (age < = 19)
-    teenager     =  !((age < 13) || (age > 19))
-    mySalary    ==  yourSalary
-    myShoeSize  !=  myShoes
+```java
+teenager     =  (age >= 13) && (age < = 19)
+teenager     =  !((age < 13) || (age > 19))
+mySalary    ==  yourSalary
+myShoeSize  !=  myShoes
+```
 
 * Observera att operanderna till jämförelseoperatorerna är numeriska värden!
 
@@ -579,15 +603,21 @@ Typer har olika rang: t.ex. har `double` högre rang än `int`.
 Ett värde med lägre rang kan alltid tilldelas en variabel med högre rang
 eftersom den lägre rangens typ utgör en delmängd av den högre, t.ex:
 
-    double d = 3;
+```java
+double d = 3;
+```
 
 Men inte tvärtom eftersom man förlorar precision:
 
-    int i = 3.14;       // ger kompileringsfel
+```java
+int i = 3.14;               // Ger kompileringsfel.
+```
 
 Vi kan lösa det genom att göra en explicit typkonvertering (cast), t.ex:
 
-    int i = (int)3.14; // görs om till 3
+```java
+int i = (int)3.14;          // Görs om till 3.
+```
 
 
 Uttryck med metodanrop
@@ -595,13 +625,18 @@ Uttryck med metodanrop
 
 I ett uttryck kan metoder anropas om de 'returnerar' ett värde (funktioner).
 
-    volume = circleaArea(15.0) * height;
+```java
+volume = circleaArea(15.0) * height;
+```
 
-Om en metod är deklarerad som 'void' och således inte returnerar något värde
+Om en metod är deklarerad som '`void`' och således inte returnerar något värde
 får ett sådant metodanrop inte ingå i ett uttryck.
-Felaktigt:
 
-    a = skrivUt("Jocke") + 100;
+### Felaktigt:
+
+```java
+a = skrivUt("Jocke") + 100;
+```
 
 
 Konstanta "variabler"
@@ -609,13 +644,17 @@ Konstanta "variabler"
 
 Modifierare *final* vid deklaration av variabler.
 
-    final int KATTLIV = 9;
-    final double PI = 3.141592;
+```java
+final int KATTLIV = 9;
+final double PI = 3.141592;
+```
 
 Dessa kan endast tilldelas ett värde EN gång.
 
-    final int UNDERVERK;
-    UNDERVERK = 7;
+```java
+final int UNDERVERK;
+UNDERVERK = 7;
+```
 
 Använd konstanter istället för explicita 'siffror' i programkod.
 
@@ -625,9 +664,7 @@ Använd konstanter istället för explicita 'siffror' i programkod.
 * Mindre risk för fel i programmet p.g.a. ofullständiga ändringar.
 
 
-
 --------------------------------------------------------------------------------
-
 
 
 Föreläsning 3 -- Klasser, objekt, referenser och selektioner
@@ -648,33 +685,37 @@ Objektorienterad programkod består av klasser. Ofta en klass per textfil.
     modifierare class klassnamn
     kodblock
 
-Ett kodblock inramas av { } och innehåller en sekvens av programsatser
+Ett kodblock inramas av { } och innehåller en sekvens av programsatser.
+
 
 En klass
 --------
 
-    public class Test
-    {
-        deklarationer av variabler (attribut)
-        deklaration/definition av metoder
-    }
+```
+public class Test
+{
+    deklarationer av variabler (attribut)
+    deklaration/definition av metoder
+}
+```
 
 
 Variablerna och metoderna kallas instansmedlemmar.
 
-    public class Hiss
-    {
-        private int våning = 1;
+```java
+public class Hiss
+{
+    private int våning = 1;
 
-        public void körTill(int v) {
-            våning = v;
-        }
-
-        public int vilkenVåning() {
-            return våning;
-        }
+    public void körTill(int v) {
+        våning = v;
     }
 
+    public int vilkenVåning() {
+        return våning;
+    }
+}
+```
 
 Klasser i UML
 -------------
@@ -711,22 +752,24 @@ Objekt
 * Det enda sättet för ett objekt att påverka ett annat är genom att anropa
   någon av dess metoder.  På så sätt har objekten full kontroll av vad som sker.
 
-* Metoderna och minnet är inkapslat i objekten. Detta kallas information hiding.
+* Metoderna och minnet är inkapslat i objekten.
+  Detta kallas *information hiding*.
 
 Skapande och användning av objekt
 ---------------------------------
 
-    Hiss hissA = new Hiss();
-    Hiss hissB = new Hiss();
+```java
+Hiss hissA = new Hiss();
+Hiss hissB = new Hiss();
 
-    hissB.körTill(13);
+hissB.körTill(13);
+```
 
-
-* Operatorn new för att skapa objekt!
-* Referensvariabler för att hålla i objekt
-* Punkt-operatorn för att komma åt medlemmar i objekt
-* Endast *public*-medlemmar kan kommas åt från andra objekt
-* *private*-medlemmar kan aldrig kommas åt utifrån
+* Operatorn `new` för att skapa objekt!
+* Referensvariabler för att hålla i objekt.
+* Punkt-operatorn för att komma åt medlemmar i objekt.
+* Endast *public*-medlemmar kan kommas åt från andra objekt.
+* *private*-medlemmar kan aldrig kommas åt utifrån.
 
 ### Objekt i UML
 
@@ -763,8 +806,8 @@ Referensvariabler
 * Syntaxen är densamma som för primitiva variabler
 
 * Referensvariabler har en *typ* som är kompatibel med det objekt den refererar
-  till (dess klass), referensvariabel till objektet Bil har en typ som är
-  kompatabel med Bil.
+  till (dess klass), referensvariabel till objektet `Bil` har en typ som är
+  kompatabel med `Bil`.
 
 Deklaration av referensvariabler
 --------------------------------
@@ -777,23 +820,27 @@ Deklaration av referensvariabler
 
 ### Exempel:
 
-        String a, b, c;             // Ja, String är faktiskt en klass
-        Automobile car1, car2;
+```java
+String a, b, c;             // Ja, String är faktiskt en klass
+Automobile car1, car2;
+```
 
-* a, b, c    kan referera till String-objekt
-* car1, car2 kan referera till Automobile-objekt
+* `a`, `b`, `c`    kan referera till String-objekt
+* `car1`, `car2` kan referera till Automobile-objekt
 
 Att skapa objekt
 ----------------
 
 * Objekt skapas med operatorn *new* enligt syntaxen:
 
-        new ClassName()
-           (egentligen anrop av konstruktor)
+```java
+    new ClassName()
+       (egentligen anrop av konstruktor)
 
-        new String("Jag är ett nytt objekt");
+    new String("Jag är ett nytt objekt");
 
-        new Automobile();
+    new Automobile();
+```
 
   Men hur kommer vi åt objektet?
 
@@ -807,13 +854,15 @@ Precis som för primitiva variabler.
 
 ### Exempel:
 
-    variabelnamn = referensuttryck;
+```java
+variabelnamn = referensuttryck;
 
-    String s;                                   // deklaration
-    s            = new String("Hejbaberiba!");  // tilldelning
-    String t     = new String("Java");          // initiering
-    String u     = "Konstant sträng";           // !
-    u = s;                                      // vad händer här?
+String s;                                   // Deklaration
+s            = new String("Hejbaberiba!");  // Tilldelning
+String t     = new String("Java");          // Initiering
+String u     = "Konstant sträng";           // !
+u = s;                                      // Vad händer här?
+```
 
 
 Objektens liv
@@ -971,7 +1020,7 @@ Block {...}
 -----------
 
 * Används för att gruppera andra satser till en enhet.
-* En sats kan i de flesta fall ersättas med ett helt block av satser
+* En sats kan i de flesta fall ersättas med ett helt block av satser.
 
         Sats; ------> {
                           Sats1;
@@ -982,8 +1031,8 @@ Block {...}
 * Används i deklaration/definition av klasser och metoder.
 * Används när en styrande sats (villkorssats eller repetitionssats ska styra
   programflödet till en grupp av satser.
-* Används när man vill ha ett eget scope (för variabler)
- (Exceptions och switch-satsen)
+* Används när man vill ha ett eget *scope* (för variabler)
+ (Exceptions och `switch`-satsen)
 
 Villkorssatser
 --------------
@@ -991,20 +1040,21 @@ Villkorssatser
 * Ett program styrs av olika villkor så att det kan utföra olika satser
   beroende av villkoret.
 * För detta ändamål finns if-satsen, if-else-satsen och switch-satsen.
-* if-satserna behöver ett logiskt uttryck för att 'välja en väg' av två möjliga
-* Switch-satsen vill ha ett heltalsvärde för att välja en väg av flera möjliga
+* `if`-satserna behöver ett logiskt uttryck för att 'välja en väg' av två
+  möjliga.
+* `switch`-satsen vill ha ett heltalsvärde för att välja en väg av flera möjliga.
 
 if-satsen
 ---------
 
 ### Syntax för enkelsats:
 
-    if ( logiskt uttryck )
+    if (logiskt uttryck)
         sats;
 
 ### Syntax för block av satser:
 
-    if ( logiskt uttryck ) {
+    if (logiskt uttryck) {
         sats1;
         sats2;
         sats3;
@@ -1018,80 +1068,88 @@ if-else-satsen
 
 ### Syntax för if-else:
 
-    if ( logiskt uttryck )
-        sats1;
-    else
-        sats2;
+```
+if (logiskt uttryck)
+    sats1;
+else
+    sats2;
+```
 
 ### Semantik:
-Om det logiska uttryckets värde är *true* utförs sats 1, annars utförs sats2.
+Om det logiska uttryckets värde är *true* utförs sats1, annars utförs sats2.
 
 Nästlad if-else-sats
 --------------------
 
 ### Syntax för if-else:
 
-    if ( uttryck 1 )
-        sats1;
-    else if ( uttryck 2 )
-        sats2;
-    else
-        sats3;
+```
+if (uttryck 1)
+    sats1;
+else if (uttryck 2)
+    sats2;
+else
+    sats3;
+```
 
 ### Semantik:
-Om uttryck1 == true utförs sats 1, annars om uttryck2 == true utförs sats2,
+Om `uttryck1 == true` utförs sats1, annars om uttryck2 == true utförs sats2,
 annars utförs sats3.
 
 Detta kan göras hur långt som helst. Men det tar tid att beräkna varje logiskt
 uttryck.
 
-    if ( uttryck 1 )          // tid!
-        sats1;
-    else if ( uttryck 2 )     // tid!
-        sats2;
-    else if ( uttryck 3 )     // tid!
-        sats3;
-    else if ( uttryck 4 )     // tid!
-        sats4;
-    else
-        sats5;
+```
+if (uttryck 1)          // tid!
+    sats1;
+else if (uttryck 2)     // tid!
+    sats2;
+else if (uttryck 3)     // tid!
+    sats3;
+else if (uttryck 4)     // tid!
+    sats4;
+else
+    sats5;
+```
 
 
 switch-satsen
 -------------
 
 Om man har många möjliga fall och dessutom vill spara tid.
-Kan endast arbeta med heltalsuttryck, även tecken ('a', 'b', 'c', ...) hör dit
+Kan endast arbeta med heltalsuttryck, även tecken ('a', 'b', 'c', ...) hör dit.
 
 ### Syntax:
 
-    switch ( heltalsuttryck )
-    {
-        ...
-    }
+```
+switch (heltalsuttryck)
+{
+    ...
+}
+```
 
 ### Syntax, fortsatt:
 
-    switch ( tal )
-    {
-        case 1:
-            System.out.println("Ett");
-            break;
-        case 2:
-            System.out.println("Två");
-            break;
-        case(19):
-            System.out.println("Nitton");
-            break;
-        default:
-            System.out.println("Allt annat än ett, två och nitton");
-            break;
-    }
-
+```java
+switch (tal)
+{
+    case 1:
+        System.out.println("Ett");
+        break;
+    case 2:
+        System.out.println("Två");
+        break;
+    case(19):
+        System.out.println("Nitton");
+        break;
+    default:
+        System.out.println("Allt annat än ett, två och nitton");
+        break;
+}
+```
 
 
 --------------------------------------------------------------------------------
-
 
 
 Föreläsning 4 -- Metoder
@@ -1114,12 +1172,14 @@ uppfinna hjulet på nytt varje gång.
 
 ### Syntax:
 
-        modifierare returtyp namn ( parameterlista )
-        {
-            // satser
-            // eventuellt: return ;
-            // eventuellt: return uttryck;
-        }
+```
+modifierare returtyp namn (parameterlista)
+{
+    satser ..
+    eventuellt:     return;
+    eventuellt:     return uttryck;
+}
+```
 
 
 Metoder: procedurtyp - void
@@ -1127,51 +1187,66 @@ Metoder: procedurtyp - void
 
 * Metoder som inte 'svarar' med ett värde
 * Kan inte ingå i uttryck
-* Deklareras med 'returtypen' void
+* Deklareras med 'returtypen' `void`
 * Proceduren avslutas när programflödet kommit förbi sista satsen eller av ett
-  explicit return;
+  explicit `return;`
 
 Procedurer - definition
 -----------------------
 
 ### Exempel:
 
-    public void printName ( String n ) {
-        System.out.println("Namnet är: " + n);
-    }
+```java
+public void printName (String n)
+{
+    System.out.println("Namnet är: " + n);
+}
+```
 
 Procedurer - definition
 -----------------------
 
 ### Exempel (tidigt återhopp):
 
-    public void printName ( String n ) {
-        if (n == null)
-            return;
-        System.out.println("Namnet är: " + n);
-    }
+```java
+public void printName (String n)
+{
+    if (n == null)
+        return;
+
+    System.out.println("Namnet är: " + n);
+}
+```
 
 Procedurer - anrop
 ------------------
 
 Anrop av metoder sker enligt syntaxen:
 
-    metodnamn ( värde/uttryckslista )       // alltid par av parenteser
+```
+metodnamn(värde/uttryckslista)       // Alltid par av parenteser.
+```
 
 * Antalet värden (0 eller flera) och deras typer (primitiva eller referenser)
   måste överensstämma med metodens deklaration/definition.
 
 ### Exempel på anrop inom samma objekt:
 
-    printName( "Fredrik" );
+```java
+printName("Fredrik");
+```
 
 ### Exempel på anrop från annat objekt:
 
-    obj . printName( "Fredrik" );
+```java
+obj.printName("Fredrik");
+```
 
-Utskrift:
+### Utskrift:
 
-    Namnet är: Fredrik
+```
+Namnet är: Fredrik
+```
 
 
 Metoder: funktionstyp
@@ -1180,57 +1255,76 @@ Metoder: funktionstyp
 * Lösningen på ett isolerat enkelt problem kan ofta formuleras i en enkel
   algoritm (funktion) som 'svarar' med lösningen.
 * Ett stort problem kan lösas genom att hitta dess 'små' problem och lösa dem
-  med de färdiga lösningarna (funktionerna)
-* Sätt samman lösningarna
+  med de färdiga lösningarna (funktionerna).
+* Sätt samman lösningarna.
+
+> ("Divide and conquer")
+> In computer science, divide and conquer (D&C) is an algorithm design paradigm
+> based on multi-branched recursion. A divide and conquer algorithm works by
+> recursively breaking down a problem into two or more sub-problems of the same
+> (or related) type, until these become simple enough to be solved directly. The
+> solutions to the sub-problems are then combined to give a solution to the
+> original problem.
+>
+>
+>  *Divide and conquer algorithms*
+>
+>  `https://en.wikipedia.org/wiki/Divide_and_conquer_algorithms`
+
 
 Funktioner - definition
 -----------------------
 
-* Hitta och skriv ut det största av tre värden
+* Hitta och skriv ut det största av tre värden.
 
-  Förenkla: hitta det största av två och formulera algoritm:
+    - Förenkla: hitta det största av två och formulera algoritm:
 
-        /* Funktion som tar två heltal som parametrar och returnerar
-           det största värdet. */
+    ```java
+    /* Funktion som tar två heltal som parametrar och returnerar
+       det största värdet. */
 
-        int max (int a, int b) {
-            if (a > b)
-                return a;    // 'svara' med värdet som a innehåller
-            else
-                return b;    // 'svara' med värdet som b innehåller
-        }
+    int max (int a, int b) {
+        if (a > b)
+            return a;    // 'svara' med värdet som a innehåller
+        else
+            return b;    // 'svara' med värdet som b innehåller
+    }
+    ```
 
 
 Funktioner - anrop
 ------------------
 
+### Testa:
 
-Testa:
+```java
+int largest;
+int p = 123;
+int q = 456;
 
-    int largest;
-    int p = 123;
-    int q = 456;
+largest = max(p, q);
+```
 
-    largest = max(p, q);
-
-* Innan tilldelningen skickas p's och q's värden till funktionen max.
-* De kopieras till parametrarna a och b
-* Funktionen beräknar största värdet och returnerar det (456)
-* Tilldelning sker till variabeln 'largest'
+* Innan tilldelningen skickas `p`'s och `q`'s värden till funktionen `max`.
+* De kopieras till parametrarna `a` och `b`.
+* Funktionen beräknar största värdet och returnerar det (456).
+* Tilldelning sker till variabeln `'largest'`.
 
 Funktioner  två anrop
 ----------------------
 
 Åter till problemet att finna det största av tre heltal. Här med två anrop:
 
-    int tmp, largest;
-    int p = 123;
-    int q = 456;
-    int r = 789;
+```java
+int tmp, largest;
+int p = 123;
+int q = 456;
+int r = 789;
 
-    tmp = max(p, q);                // 456
+tmp = max(p, q);                    // 456
 
-    largest = max(tmp, r);          // max(456, 789) => 789
+largest = max(tmp, r);              // max(456, 789) => 789
+```
 
 
 Funktioner  anrop i anrop
@@ -1238,12 +1332,14 @@ Funktioner  anrop i anrop
 
 Men det går att göra ännu elegantare med anrop i anrop:
 
-    int largest;
-    int p = 123;
-    int q = 456;
-    int r = 789;
+```java
+int largest;
+int p = 123;
+int q = 456;
+int r = 789;
 
-    largest = max(p, max(q, r));    // 456
+largest = max(p, max(q, r));        // 456
+```
 
 
 Klassvariabler och metoder
@@ -1254,7 +1350,20 @@ Klassvariabler och metoder
 * Main är deklarerad `static` vilket innebär att man lätt kan skriva små
   testprogram utan att skapa objekt.
 * Bör undvikas, men *main()* måste vara det -- varför?
-* Kolla in klassen *Math*
+* Kolla in klassen *Math*.
+
+    > The class Math contains methods for performing basic numeric operations
+    > such as the elementary exponential, logarithm, square root, and
+    > trigonometric functions.
+    >
+    >
+    [Math, Java Platform, Standard Edition 7 API Specification]
+
+
+[Math, Java Platform, Standard Edition 7 API Specification]:
+http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html
+
+
 
 Skillnad mellan klassmetod och instansmetod
 -------------------------------------------
@@ -1262,30 +1371,36 @@ Skillnad mellan klassmetod och instansmetod
 * En klass-metod "finns" och kan användas
   utan att man skapat någon instans av klassen.
 
-* Anges genom att den är static.
+* Anges genom att den är `static.`
 
-        JOptionPane.showMessageDialog(null, "Hej Hopp!");
+    ```java
+    JOptionPane.showMessageDialog(null, "Hej Hopp!");
+    ```
 
-* Metoder som ej är static kan ej anropas
+* Metoder som ej är `static` kan ej anropas
   förrän man skapat ett objekt av klassen.
 
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
+    ```java
+    Scanner sc = new Scanner(System.in);
+    String input = sc.nextLine();
+    ```
 
 * *main()* måste därför vara `static` -- den anropas ju och exekveras
   innan man har kunnat skapat några objekt.
 
-        public static void main(String[]args)
-        {
-            ...
-        }
+    ```java
+    public static void main(String[]args)
+    {
+        ...
+    }
+    ```
 
 Konstruktorer
 -------------
 
 Som ni har sett skapas objekt enligt syntaxen:
 
-        new Klass ()
+    new Klass ()
 
 Det ser ju ut som ett metodanrop?!
 Det som faktiskt sker är att en speciell 'metod' i klassen som kallas
@@ -1299,84 +1414,97 @@ Konstruktorer
 En konstruktor-definition har samma form som en vanlig metod.  Den saknar dock
 returtyp och har alltid samma namn som klassen den definierats i:
 
-    class A
+```java
+class A
+{
+    public A()
     {
-        public A()
-        {
-            System.out.println("Nu föds jag!");
-        }
+        System.out.println("Nu föds jag!");
     }
+}
 
-    ...
+...
 
-    new A();    ------>    Utskrift: Nu föds jag!
+new A();    ------>    Utskrift: Nu föds jag!
+```
 
 
 Konstruktorer används för att initiera objektet; att sätta attributvärden,
 sätta referenser till andra objekt och eventuellt anropa metoder.
 
 * Om man inte själv definierat en konstruktor så skapas en default konstruktor.
-* Konstruktorer kan ta parametrar
+* Konstruktorer kan ta parametrar.
 
-        class Point
-        {
-            private int x, y;
-
-            public Point(int x, int y)
-            {
-                this.x = x;         // obs this för att komma till objekt-scope
-                this.y = y;
-            }
-        }
-
-
-Konstruktorer - överlagring
----------------------------
-
-En klass kan ha flera konstruktorer om de har olika parameterlistor.
-Konstruktorer kan dessutom anropa varandra internt.
-
+    ```java
     class Point
     {
         private int x, y;
 
         public Point(int x, int y)
         {
-            this.x = x;
+            this.x = x;         // Obs 'this' för att komma till objekt-scope.
             this.y = y;
         }
-
-        public Point(Point p)   // Överlagrad konstruktor
-        {
-            this(p.x, p.y);     // Med this(.,.) anropas den första konstruktorn
-        }
     }
+    ```
+
+
+Konstruktorer -- överlagring
+----------------------------
+
+En klass kan ha flera konstruktorer om de har olika parameterlistor.
+Konstruktorer kan dessutom anropa varandra internt.
+
+```java
+class Point
+{
+    private int x, y;
+
+    public Point(int x, int y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Point(Point p)   // Överlagrad konstruktor.
+    {
+        this(p.x, p.y);     // Med this(.,.) anropas den första konstruktorn.
+    }
+}
+```
 
 
 * Använda olika konstruktorer:
 
-        Point p1 = new Point( 10, 20 );
-        Point p2 = new Point( p1 );     // obs att en referens skickas
+    ```java
+    Point p1 = new Point( 10, 20 );
+    Point p2 = new Point( p1 );         // Obs att en referens skickas.
+    ```
 
-  Men:
+* Men observera att:
 
-        Point p3 = new Point();         // ger kompileringsfel!
+    ```java
+    Point p3 = new Point();             // Ger kompileringsfel!
+    ```
 
-Det finns ingen default konstruktor Point() {...} eftersom man har definierat
+Det finns ingen default konstruktor `Point() {...}` eftersom man har definierat
 andra.  Om en sådan behövs måste man explicit skriva en sådan.
+
 
 Överlagring
 -----------
 
-* Överlagring gäller även för vanliga metoder
+* Överlagring gäller även för vanliga metoder.
 
-        int addera( int a, int b)
-        int addera( int a, int b, int c )
-        String addera( String a, String b)
+    ```java
+    int addera( int a, int b)
+    int addera( int a, int b, int c )
+    String addera( String a, String b)
 
-        addera(10, 20);            --->    30
-        addera(10, 20, 30);        --->    60
-        addera("Stu", "dent");     --->    "Student"
+    addera(10, 20);                         //--->    30
+    addera(10, 20, 30);                     //--->    60
+    addera("Stu", "dent");                  //--->    "Student"
+    ```
 
 
 Programmeringsstil
@@ -1393,18 +1521,50 @@ Programmeringsstil
 * Uppdelning i metoder
 
 
+### Code Conventions
+
+> This Code Conventions for the Java Programming Language document contains the
+> standard conventions that we at Sun follow and recommend that others follow. It
+> covers filenames, file organization, indentation, comments, declarations,
+> statements, white space, naming conventions, programming practices and includes
+> a code example.
+>
+> 80% of the lifetime cost of a piece of software goes to maintenance.  Hardly
+> any software is maintained for its whole life by the original author.  Code
+> conventions improve the readability of the software, allowing engineers to
+> understand new code more quickly and thoroughly.  The Code Conventions for the
+> Java Programming Language document was revised and updated on April 20, 1999.
+>
+> Oracle is providing the legacy documentation here. Please use it with the
+> Advisory Disclaimer that it is NOT up to date. The information provided is for
+> archival purposes. It is not being actively maintained and therefore links in
+> the documentation may be broken.
+>
+>
+> [Code Conventions for the Java Programming Language]
+
+
+[Code Conventions for the Java Programming Language]:
+http://www.oracle.com/technetwork/java/index-135089.html
+
+
+--------------------------------------------------------------------------------
+
+
 Föreläsning 5 -- Strängar, iterationer och arrayer i Java
 =========================================================
 
 Klassen String
 --------------
 
-* En klass som ingår i standard Java
-* Finns i paketet `java.lang` och ingår i själva språket Java
-* Objekten lagrar och *hanterar* text
+* En klass som ingår i standard Java.
+* Finns i paketet `java.lang` och ingår i själva språket Java.
+* Objekten lagrar och *hanterar* text.
 
-    String s = new String("Detta är textsträng");
-    String t = "Detta är också en textsträng";
+```java
+String s = new String("Detta är textsträng");
+String t = "Detta är också en textsträng";
+```
 
 
 String - metoder
@@ -1422,20 +1582,23 @@ String - metoder
 | `String toLowerCase()`           | Omvandlar till små bokstäver   |
 
 
-* Den lagrade texten är oförstörbar, d.v.s., det går inte att ändra ett strängobjekt
+* Den lagrade texten är oförstörbar, d.v.s., det går inte att ändra ett
+  strängobjekt.
 
 
-* Ny eller ändrad text läggs automatiskt i nya objekt
+* Ny eller ändrad text läggs automatiskt i nya objekt.
 
-        String s1 = new String( "abcedf" );         s1 ---> abcdef
+    ```java
+    String s1 = new String( "abcedf" );         // s1 ---> abcdef
 
-        String s2 = s1.substring( 0, 3 );           s2 ---> abc
+    String s2 = s1.substring( 0, 3 );           // s2 ---> abc
 
-        String s3 = s2.toUpperCase();               s3 ---> ABC
+    String s3 = s2.toUpperCase();               // s3 ---> ABC
 
-        System.out.println(s1);             // abcdef
-        System.out.println(s2);             // abc
-        System.out.println(s3);             // ABC
+    System.out.println(s1);                     // abcdef
+    System.out.println(s2);                     // abc
+    System.out.println(s3);                     // ABC
+    ```
 
 
 Objektfabrik
@@ -1447,69 +1610,83 @@ Objektfabrik
 Klassen String
 --------------
 
-* Eftersom String är inbyggt i språket så finns det finesser
+* Eftersom `String` är inbyggt i språket så finns det finesser.
 
-  T.ex. konkatenering med operatorn +
+    T.ex. konkatenering med operatorn `+`:
 
-        String s4 = s2 + s3;            // abcABC
-                                                s4 ---> abcABC
+    ```java
+    String s4 = s2 + s3;                        // abcABC
+                                                // s4  --->  abcABC
+    ```
 
 
 * Konstanta strängar i programkoden är objekt!
 
-        String s5 = "Gissa min längd";
-        S5.length();                    // 15
-        "Gissa min längd".length();     // 15
+    ```java
+    String s5 = "Gissa min längd";
+    S5.length();                                // 15
+    "Gissa min längd".length();                 // 15
+    ```
 
 
 Jämförelser av strängar
 -----------------------
 
-Om man försöker jämföra strängar med operatorn == så kan man lätt blir lurad.
+Om man försöker jämföra strängar med operatorn `==` så kan man lätt blir lurad.
 Då är det referenserna som jämförs, d.v.s är det samma objekt?
 
-* Det är alltså inte innehållet i objekten som jämförs
+* Det är alltså inte innehållet i objekten som jämförs.
 
-        String s1 = new String( "ABCABC" );
-        String s2 = s1.substring(0,3);
-        String s3 = s1.substring(3);
+    ```java
+    String s1 = new String("ABCABC");
+    String s2 = s1.substring(0,3);
+    String s3 = s1.substring(3);
 
-        if (s1 == s2)                    // FELAKTIGT SÄTT ATT JÄMFÖRA STRÄNGAR
-            System.out.println("Lika");
-        else
-            System.out.println("Olika");
+    /* FELAKTIGT SÄTT ATT JÄMFÖRA STRÄNGAR! */
+    if (s1 == s2)
+        System.out.println("Lika");
+    else
+        System.out.println("Olika");
+    ```
+
+* För att jämföra innehåll i objekt används metoden `boolean equals(Object o)`.
+  Den definieras i klassen `Object` och ärvs in i alla klasser.
+  Den som vill anpassa `equals` till sin klass skriver en egen version.
+  Det har man gjort i klassen `String`:
+
+    ```java
+    if ( s1.equals(s2) )
+        System.out.println("Lika")
+    else
+        System.out.println("Olika");
+    ```
+
+* För att jämföra alfabetisk ordning används `compareTo()`.
+
+    Den returnerar ett heltal:
+
+  | Villkor                | Returvärde |
+  |:-----------------------|-----------:|
+  | `s1` kommer före `s2`  | $<0$       |
+  | `s1` är lika med `s2`  | $=0$        |
+  | `s1` kommer efter `s2` | $>0$       |
 
 
+### Exempel:
 
-* För att jämföra innehåll i objekt används metoden boolean equals(Object o)
-  Den definieras i klassen Object och ärvs in i alla klasser.
-  Den som vill anpassa equals till sin klass skriver en egen version.
-  Det har man gjort i klassen String:
+```java
+String s1 = "Karin";
+String s2 = "Kerstin";
 
-            if ( s1.equals(s2) )
-                System.out.println("Lika")
-            else
-                System.out.println("Olika");
+int jmf = s1.compareTo(s2);
 
-
-* För att jämföra alfabetisk ordning används compareTo()
-  Den returnerar ett heltal:
-
-            <  0  om  s1 kommer före s2
-            == 0  om  s1 är lika med s2
-            >  0  om  s1 kommer efter s2
-
-            String s1 = "Karin";
-            String s2 = "Kerstin";
-
-            int jmf = s1.compareTo(s2);
-
-            if ( jmf < 0 )
-                System.out.println(s1 + " kommer alfabetiskt före " + s2)
-            else if ( jmf > 0 )
-                System.out.println(s2 + " kommer alfabetiskt före " + s1);
-            else
-                System.out.println(s1 + " lika med " + s2);
+if ( jmf < 0 )
+    System.out.println(s1 + " kommer alfabetiskt före " + s2)
+else if ( jmf > 0 )
+    System.out.println(s2 + " kommer alfabetiskt före " + s1);
+else
+    System.out.println(s1 + " lika med " + s2);
+```
 
 
 Teckenkoder och literaler
@@ -1531,20 +1708,27 @@ Unicode        16 bitar         65536 tecken        (kinesiska, ..)
 
 
 ### Exempel:
-tecknen `A, B, C, 1, 2, 3` kan skrivas som konstanter
+
+Tecknen `A, B, C, 1, 2, 3` kan skrivas som konstanter
 på följande alternativa sätt:
 
 * Som direkta tecken:
 
-        'A', 'B', 'C', '1', '2', '3'
+    ```
+    'A', 'B', 'C', '1', '2', '3'
+    ```
 
 * I *oktalt* format:
 
-        '\101', '\102', '\103', '\061', '\062', '\063'
+    ```
+    '\101', '\102', '\103', '\061', '\062', '\063'
+    ```
 
 * I *hexadecimalt* format:
 
-        '\u0041', '\u0042', '\u0043', '\u0031', '\u0032', '\u0033'
+    ```
+    '\u0041', '\u0042', '\u0043', '\u0031', '\u0032', '\u0033'
+    ```
 
 
 Specialkoder
@@ -1559,17 +1743,21 @@ Kod             Betydelse
 `\r`            return
 `\f`            formfeed
 `\t`            tab
-`\'`            single quote  enkel apostrof
-`\"`            double quote  dubbel apostrof
+`\'`            single quote (enkel apostrof)
+`\"`            double quote (dubbel apostrof)
 `\\`            backslash
-`\nnn`          oktal form (nnn är oktala siffror 0-7)
-`\uxxxx`        hexadeimal form (xxxx är hexadecimala siffror 0-F)
+`\nnn`          oktal form
+                (nnn är oktala siffror $0-7$)
+`\uxxxx`        hexadecimal form
+                (xxxx är hexadecimala siffror $0-F$)
 
 
 ### Exempel:
 
-    String s = "Hej\njag kallas \"Pelle\"\nmen heter Per"
-    System.out.println(s);
+```java
+String s = "Hej\njag kallas \"Pelle\"\nmen heter Per"
+System.out.println(s);
+```
                                      .---------------------.
                                     |  Hej!                |
                                     |  Jag kallas "Pelle"  |
@@ -1583,28 +1771,30 @@ Repetitionssatser -- Loopar - iterationer
 -----------------------------------------
 
 * Ett program innehåller ofta satser som upprepas.
-    * Exempel  ett program som räknar från 1 till 10
+    * Exempel; ett program som räknar från 1 till 10:
 
-                System.out.println(  1 );
-                System.out.println(  2 );
-                System.out.println(  3 );
-                System.out.println(  4 );
-                System.out.println(  5 );
-                System.out.println(  6 );
-                System.out.println(  7 );
-                System.out.println(  8 );
-                System.out.println(  9 );
-                System.out.println( 10 );
+        ```java
+        System.out.println(  1 );
+        System.out.println(  2 );
+        System.out.println(  3 );
+        System.out.println(  4 );
+        System.out.println(  5 );
+        System.out.println(  6 );
+        System.out.println(  7 );
+        System.out.println(  8 );
+        System.out.println(  9 );
+        System.out.println( 10 );
+        ```
 
 
 Ineffektivt att upprepa kod
 ---------------------------
 
-* Stora program
+* Stora program.
 
-* Mycket text att skriva eller skriva om
+* Mycket text att skriva eller skriva om.
 
-* Multipla fel och svårt att åtgärda alla fel
+* Multipla fel och svårt att åtgärda alla fel.
 
 * Frågor:
 
@@ -1624,34 +1814,40 @@ Hopp i programmen
     * Programmet blir kortare och mer generellt.
 
 
-I de "tidiga språken" som Assembler, Basic, Fortran, Cobol (och C) finns
-hopp-satser.  `Goto` eller `JMP`
+I de "tidiga språken" som Assembly, Basic, Fortran, Cobol (och C) finns
+hopp-satser, t.ex. `Goto` eller `JMP`.
 
 * Basic:
 
-        10:    print i
-        20:    i=i+1
-        30:    if i<10 then goto 10
+    ```basic
+    10:    print i
+    20:    i=i+1
+    30:    if i<10 then goto 10
+    ```
 
 
-* Assembler:
+* Assembly:
 
-        Label:  SUB R0, R0, 1
-                JNZ R0, Label
+    ```assembly
+    Label:  SUB R0, R0, 1
+            JNZ R0, Label
+    ```
 
 Det kan ge program som är svåra att förstå och avlusa -- man kan inte "se" vad
 programmet gör, utan man måste "simulera" en körning för att förstå.
 
-    10:    i=0
-    20:    i=i+1
-    30:    goto 50
-    40:    print i
-    50:    if i < 10 goto 20
-    60:    if i < 20 goto 40
+```
+10:    i=0
+20:    i=i+1
+30:    goto 50
+40:    print i
+50:    if i < 10 goto 20
+60:    if i < 20 goto 40
+```
 
 
 Fritt användande av `goto` ger oöverblickbara och ohanterliga program
-(spagettiprogram / spagettikod)
+(spagettiprogram/spagettikod).
 
 * Motreaktioner?
 
@@ -1659,14 +1855,14 @@ Fritt användande av `goto` ger oöverblickbara och ohanterliga program
 Strukturerad programmering
 --------------------------
 
-* Artikel av Edsger Dijkstra 1968: "Go to statement considered harmful" blev
+* Artikel av Edsger Dijkstra 1968: *"Go to statement considered harmful"* blev
   början.
 
 * Lösningen: använd endast *strukturerade* satser istället för hopp.
-    * if-then-else
-    * for
-    * while
-    * do-while
+    * `if-then-else`
+    * `for`
+    * `while`
+    * `do-while`
 
 * Visade att det alltid går att omforma ett ostrukturerat program till ett
   strukturerat program.
@@ -1678,210 +1874,236 @@ Strukturerad programmering
 Repetitionssatsen while ( )
 --------------------------
 
-Huvudsakligen en _villkorsstyrd_ repetitionssats. D.v.s.
+Huvudsakligen en *villkorsstyrd* repetitionssats. D.v.s.
 någonting ska utföras så länge som ett villkor är uppfyllt.
 
 ### Syntax:
 
-    while ( logiskt utryck )
+    while (logiskt utryck)
         sats / block;
 
 
 ### Semantik:
 
 1. Beräkna värdet av det logiska uttrycket 2.
-2. Om det logiska uttrycket är sant: utför upprepningssatsen/blocket
-3. Gå till punkt 1
+2. Om det logiska uttrycket är sant: utför upprepningssatsen/blocket.
+3. Gå till punkt 1.
 
 
-Kör så länge som bilen har bränsle:
+### Exempel:
 
-        while (car.hasFuel())
-            car.drive();
+* Kör så länge som bilen har bränsle:
 
+    ```java
+    while (car.hasFuel())
+        car.drive();
+    ```
 
-Ge kortspelaren kort tills han är nöjd:
+* Ge kortspelaren kort tills han är nöjd:
 
-        while (player.wantsCards()) {
-            Card card = cardDeck.getCard();
-            player.takeCard(card);
-        }
+    ```java
+    while (player.wantsCards()) {
+        Card card = cardDeck.getCard();
+        player.takeCard(card);
+    }
+    ```
 
-
-* Det är _mycket_ vanligt att man vill upprepa någonting ett visst _antal_
+* Det är *mycket* vanligt att man vill upprepa någonting ett visst *antal*
   gånger.  T.ex. vi vill skriva ut talen 1-9, d.v.s. upprepa 9 gånger:
 
-        int i = 1;                      // deklaration och initiering av loopvariabel
+    ```java
+    int i = 1;                      // Deklaration och initiering av loopvariabel.
 
-        while (i < 10) {                // loopvillkor
-            System.out.println(i);      // det vi vill upprepa
-            i = i + 1;                  // uppräkning av loopvariabeln
-        }
-
-
-* Detta kan göras bekvämare och mer strukturerat med for-satsen.
-
-
-Repetitionssatserna while ( ) och for ()
---------------------------------------
-
-    int i = 1;                          // deklaration och initiering av loopvariabel
-
-    while (i < 10) {                    // loopvillkor
-        System.out.println(i);          // det vi vill upprepa
-        i = i + 1;                      // uppräkning av loopvariabeln
+    while (i < 10) {                // Loopvillkor
+        System.out.println(i);      // Det vi vill upprepa.
+        i = i + 1;                  // Uppräkning av loopvariabeln.
     }
+    ```
 
 
-    for (int i = 1; i < 10; i++)
-        System.out.println(i);
+* Detta kan göras bekvämare och mer strukturerat med `for`-satsen.
+
+
+Repetitionssatserna while ( ) och for ( )
+-----------------------------------------
+
+```java
+int i = 1;                          // deklaration och initiering av loopvariabel
+
+while (i < 10) {                    // loopvillkor
+    System.out.println(i);          // det vi vill upprepa
+    i = i + 1;                      // uppräkning av loopvariabeln
+}
+
+
+for (int i = 1; i < 10; i++)
+    System.out.println(i);
+```
 
 
 Repetitionssatsen for ( )
-------------------------
+-------------------------
 
-Huvudsakligen en antalsstyrd repetitionssats.
+Huvudsakligen en *antalsstyrd* repetitionssats.
 D.v.s. någonting ska utföras ett visst antal gånger.
 
 ### Syntax:
 
-    for ( initieringssats ; logiskt villkorsutryck ; ändringssats )
+    for (initieringssats; logiskt villkorsutryck; ändringssats)
         upprepningssats / block;
 
 
 ### Semantik:
 
-1. Utför initieringssatsen (deklaration och initiering av loopvariabel)
-2. Beräkna värdet av det logiska villkorsuttrycket
-3. Om det villkoret är sant: utför upprepningssatsen / blocket
-4. Utför ändringssats (normalt ökning av loopvariabeln)
-5. Gå till punkt 2
+1. Utför initieringssatsen (deklaration och initiering av loopvariabel).
+2. Beräkna värdet av det logiska villkorsuttrycket.
+3. Om det villkoret är sant: utför upprepningssatsen / blocket.
+4. Utför ändringssats (normalt ökning av loopvariabeln).
+5. Gå till punkt 2.
 
 
 ### Exempel:
 
-    for (int i=0; i < 10; i++)
-        System.out.println(i);                    // Skriver ut 0  9
+```java
+for (int i = 0; i < 10; i++)
+    System.out.println(i);                    // Skriver ut 0 till 9
 
-    for (int i=0; i < 10; i++)
-        System.out.println(i + 1);                // Skriver ut 1  10
+for (int i = 0; i < 10; i++)
+    System.out.println(i + 1);                // Skriver ut 1 till 10
 
-    for (int i = 1; i < 10; i++) {
-        System.out.println("Nästa siffra är: ");
-        System.out.print(i);                      // Skriver ut 1  9
-    }
+for (int i = 1; i < 10; i++) {
+    System.out.println("Nästa siffra är: ");
+    System.out.print(i);                      // Skriver ut 1 till 9
+}
+```
 
 
-for ( )  heltal inget krav
---------------------------
+for ( ) -- heltal inget krav
+----------------------------
 
 ### Exempel:
 
-Beräkna ett närmevärde till integralen av f(x)=x^2 i [0,1]
+* Beräkna ett närmevärde till integralen av $f(x)=x^2$ i $[0,1]$
 
+    ```java
     double sum = 0.0;
     double h   = 0.001;
 
     for (double x = 0.0; x <= 1.0; x += h)
         sum += x*x*h;
+    ```
 
 
 * 1000 varv!
 
 
-for ( )  semikolon  enda kravet
+for ( ) -- semikolon enda kravet
 --------------------------------
 
 ### Exempel 1:
 
-        for ( ; ; )      /* Tolkas som true */
-            System.out.println("Jag är en evighetsloop");
+```java
+for ( ; ; )                 /* Tolkas som true */
+    System.out.println("Jag är en evighetsloop");
+```
 
 
 ### Exempel 2:
 
-        int i = 0;      /* Fungerar med det är bättre att använda while */
+```java
+int i = 0;                  /* Fungerar, men det är bättre att använda while. */
 
-        for ( ; i < 10 ; ) {
-            System.out.println(i);
-            i++;
-        }
+for ( ; i < 10 ; ) {
+    System.out.println(i);
+    i++;
+}
+```
+
 
 ### Exempel 3:
 
-        for (;;)
-            ;           /* Vad händer vid den "tomma satsen"? */
-
+```java
+for (;;)
+    ;                       /* Vad händer vid den "tomma satsen"? */
+```
 
 
 Repetitionssatsen do .. while ( )
---------------------------------
+---------------------------------
 
-Villkorsstyrd repetitionssats som alltid
-utför repetitionssatsen/blocket minst en gång.  ("Vill du fortsätta?")
+*Villkorsstyrd* repetitionssats som alltid utför repetitionssatsen/blocket
+*minst en gång*.  ("Vill du fortsätta?")
 
 ### Syntax:
 
-    do
-        repetitionssats / block
-            while ( logiskt villkorsuttryck ) ;
+```
+do
+    repetitionssats / block
+while (logiskt villkorsuttryck);
+```
 
 
 ### Semantik:
 
-1. Utför repetitionssatsen
-2. Beräkna logiska villkorsuttrycket
-3. Om sant gå till punkt 1
+1. Utför repetitionssatsen.
+2. Beräkna logiska villkorsuttrycket.
+3. Om sant gå till punkt 1.
 
 
 ### Exempel:
 
-    // på lunchrestaurangen:
+```java
+// På lunchrestaurangen:
 
-    do {
-        person.getFoodFrom(restaurant);
-        person.eatFood();
-    } while (person.stillHungry());
+do {
+    person.getFoodFrom(restaurant);
+    person.eatFood();
+} while (person.stillHungry());
+```
 
 
 Break
 -----
 
-* Break för att hoppa ur en loop.
+* Använd `Break` för att hoppa ur en loop.
 
-        // count letters until space
+    ```java
+    /* Count letters until space. */
 
-        int count = 0;
-        String s = "hejsan svejsan";
+    int count = 0;
+    String s = "hejsan svejsan";
 
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == ' ')
-                break;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == ' ')
+            break;
 
-            count++;
-        }
+        count++;
+    }
 
-        System.out.println("The number of letters until space are " + count);
+    System.out.println("The number of letters until space are " + count);
+    ```
 
 
 Continue
 --------
 
-* Continue för att påbörja nästa "varv".
+* Använd `Continue` för att påbörja nästa "varv".
 
-        // count letters except space
+    ```java
+    /* Count letters except space. */
 
-        int count = 0;
-        String s = "hej på dig";
+    int count = 0;
+    String s = "hej på dig";
 
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == ' ')
-                continue;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) == ' ')
+            continue;
 
-            count++;
-        }
+        count++;
+    }
 
-        System.out.println("The number of letters except spaces are " + count);
+    System.out.println("The number of letters except spaces are " + count);
+    ```
 
 
 Nästlade loopar
@@ -1889,33 +2111,38 @@ Nästlade loopar
 
 ### Syntaxen för for ()-loopen:
 
-    for ( sats1 ; logiskt utryck ; sats2 )
+```
+for (sats1; logiskt utryck; sats2)
+    upprepningssats;
+```
+
+En `for`-loop är en sats. Därför är följande tillåtet:
+
+```
+for (sats1a; logiskt utryck; sats2a)
+    for (sats1b; logiskt utryck; sats2b)
         upprepningssats;
-
-En for-loop är en sats därför är följande tillåtet:
-
-    for ( sats1a ; logiskt utryck ; sats2a )
-        for ( sats1b ; logiskt utryck ; sats2b )
-            upprepningssats;
+```
 
 För varje repetition av den yttre utförs den inre i sin helhet.
 
 * Viktigt med olika loopvariabler.
 
 
-Nästlade loopar multiplikationstabell
--------------------------------------
+Nästlade loopar -- multiplikationstabell
+----------------------------------------
 
-    for (int x = 1; x < 10; x++) {
+```java
+for (int x = 1; x < 10; x++) {
+    for (int y = 1; y < 10; y++)
+        System.out.print("\t" + x * y);
 
-        for (int y = 1; y < 10; y++)
-            System.out.print("\t" + x * y);
-
-        System.out.println();               // byt rad
-    }
+    System.out.println();                       // Byt rad
+}
+```
 
 
-Nästlade loopar -- testutskrift:
+### Nästlade loopar -- testutskrift:
 
 ```
 1    2     3     4     5     6     7     8     9
@@ -1937,6 +2164,7 @@ Nästlade loopar -- testutskrift:
 9    18    27    36    45    54    63    72    81
 ```
 
+
 Arrayer (fält, vektorer)
 ------------------------
 
@@ -1946,8 +2174,7 @@ Arrayer (fält, vektorer)
 
 * Enskilda element väljs (indexeras) med `[ ]`
 
-
-
+```
                                                            tentaresultat
                                                            .-----------.
                               Första index är 0  --->  [0] |    25     |
@@ -1959,14 +2186,13 @@ Arrayer (fält, vektorer)
            T.ex. tentaresultat[6] har värdet 18  --->  [6] |    18     |
                                                        [7] |    17     |
                                                            '-----------'
-
-
+```
 
 * I Java utgår index från 0.
 
-* Par av hakklamrar `[ ]` används för deklaration och indexering
+* Par av hakklamrar `[ ]` används för deklaration och indexering.
 
-* I Java kommer man åt arrayens längd med attributet `length`
+* I Java kommer man åt arrayens längd med attributet `length`.
 
 * I Java är arrayer alltid objekt som i sin tur kan innehålla:
 
@@ -1977,36 +2203,45 @@ Arrayer (fält, vektorer)
 Arrayer för primitiva värden
 ----------------------------
 
-Det är alltså skillnad på ett arrayobjekt och en arrayreferensvariabel
+Det är alltså skillnad på ett *arrayobjekt* och en *arrayreferensvariabel*.
 
-    // en referensvariabel som kan referera till ett arrayobjekt för heltal:
-    int tentaresultat[];
+```java
+// En referensvariabel som kan referera till ett arrayobjekt för heltal:
+int tentaresultat[];
 
-    // ett arrayobjekt med 8 positioner för heltal:
-    new int[8];
+// Ett arrayobjekt med 8 positioner för heltal:
+new int[8];
 
-    // komplett deklaration och initiering:
-    int tentaresultat [] = new int[8];
+// Komplett deklaration och initiering:
+int tentaresultat [] = new int[8];
 
-                                            ARRAYEN:    [ ][ ][ ][ ][ ][ ][ ][ ]
+                                        ARRAYEN: [  ][  ][  ][ ][  ][  ][  ][  ]
+```
 
 
 Att sätta in värden i arrayer
 -----------------------------
 
-* Fungerar ungefär som för vanliga variabler
-Arrayer kan initieras vid deklaration och har då en speciell syntax:
+Fungerar ungefär som för vanliga variabler.
 
-    // Det skapas ett arrayobjekt utifrån innehållet i blocket
+* Arrayer kan initieras *vid deklaration* och har då en speciell syntax:
+
+    ```java
+    // Det skapas ett arrayobjekt utifrån innehållet i blocket.
     int tentaresultat [] = { 25,43,19,5,22,27,18,17 };
 
+                                        ARRAYEN: [25][43][19][5][22][27][18][17]
+    ```
 
-Eller efter deklaration:
+* Eller *efter* deklaration:
 
-    // Arrayobjekt med 8 element
+    ```java
+    // Arrayobjekt med 8 element:
     int tentaresultat [] = new int[8];
 
-    // Vanliga tilldelningar till arrayens element
+                                        ARRAYEN: [  ][  ][  ][ ][  ][  ][  ][  ]
+
+    // Vanliga tilldelningar till arrayens element:
     tentaresultat [0] = 25;
     tentaresultat [1] = 43;
     tentaresultat [2] = 19;
@@ -2017,62 +2252,72 @@ Eller efter deklaration:
     tentaresultat [7] = 17;
 
                                         ARRAYEN: [25][43][19][5][22][27][18][17]
+    ```
 
 
-Att sätta in värden i arrayer
------------------------------
+* Det går även att använda block-formen senare:
 
-Det går även att använda block-formen senare:
-
+    ```java
     int array [];
     array = new int[] {25,43,19,5,22,27,18,17};
 
                                         ARRAYEN: [25][43][19][5][22][27][18][17]
+    ```
 
 
 Att komma åt värden i arrayer
 -----------------------------
 
-Fungerar ungefär som för vanliga variabler fast med [ ]
+Fungerar ungefär som för vanliga variabler fast med `[ ]`.
 
-* Kom ihåg att testa för null
+* Kom ihåg att testa för *null*!
 
-* Typiskt används loopar
+Typiskt används loopar.
 
-        double medel = 0;
 
-        for (int index = 0; index < tentaresultat.length; index++)
-            medel += tentaresultat [index];
+### Exempel:
 
-        medel /= tentaresultat.length;
+```java
+double medel = 0;
 
-                                                 ---------------------------->
-                                        ARRAYEN: [25][43][19][5][22][27][18][17]
+for (int index = 0; index < tentaresultat.length; index++)
+    medel += tentaresultat [index];
+
+medel /= tentaresultat.length;
+
+                                         ---------------------------->
+                                ARRAYEN: [25][43][19][5][22][27][18][17]
+```
 
 
 Kopiera arrayer (objekt)
 ------------------------
 
-Metoden clone kopierar objekt (se klassen Object)
-* **OBS!** *castning* till rätt typ måste göras
+* Metoden `clone` kopierar objekt (se klassen `Object`).
+
+    **OBS!** *castning* till rätt typ måste göras.
+
+    ```java
+    int a [] = {1,2,3};                         a  --->  [1][2][3]
+
+    int b [] = (int[]) a.clone();               b  --->  [1][2][3]
+    ```
 
 
-        int a [] = {1,2,3};                         a  --->  [1][2][3]
+* Nu har vi två array-objekt med samma innehåll!
 
-        int b [] = (int[]) a.clone();               b  --->  [1][2][3]
+    **OBS!** vad som händer om man gör följande:
 
-
-Nu har vi två array-objekt med samma innehåll!
-
-* **OBS!** vad som händer om man gör
-
-        b = a;                                      a  ---.
-                                                           \
-                                                            v
-                                                        [1][2][3]
-                                                            ^
-                                                           /
-                                                    b  ---'
+    ```java
+    b = a;                                      a  ---.
+                                                       \
+                                                        v
+                                                    [1][2][3]
+                                                        ^
+                                                       /
+                                                b  ---'
+    ```
+    Det leder till att `b` och `a` refererar till samma objekt.
 
 Arraycopy
 ---------
@@ -2082,38 +2327,50 @@ Arraycopy
 
 En färdig funktion för att kopiera en sekvens av värden från en array till en annan.
 
+
 ### Exempel:
 
 Vi vill kopiera 4 element från och med index 2 ur *arr1* till *arr2* med början i
 index 5.
 
-    int array1 [] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    int array2 [] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+```java
+int array1 [] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+int array2 [] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-    System.arraycopy(array1, 2, array2, 5, 4);
+System.arraycopy(array1, 2, array2, 5, 4);
+```
 
-    Innehållet i array2: 0,0,0,0,0,2,3,4,5,0
+### Innehållet i `array2`:
+
+```
+0,0,0,0,0,2,3,4,5,0
+```
 
 
 Att skicka arrayer som parametrar
 ---------------------------------
 
-Metod som tar en array som parameter:
+* Metod som tar en array som parameter:
 
+    ```java
     void printArray(int [] a)
     {
         for (int i=0; i < a.length; i++)
             System.out.println(a[i]);
     }
+    ```
 
-Anrop av metoden:
+* Anrop av metoden:
 
+    ```java
     int array [ ] = { 1, 7, 4, 2, 7, 9, 9, 0 };
 
     printArray(array);
+    ```
 
-Utskrift:
+* Utskrift:
 
+    ```
     1
     7
     4
@@ -2122,7 +2379,10 @@ Utskrift:
     9
     9
     0
+    ```
 
+
+--------------------------------------------------------------------------------
 
 
 Föreläsning 6 - Iterationer & arrayer
@@ -2156,47 +2416,52 @@ https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
 Inmatning av värden från tangentbordet
 --------------------------------------
 
-    System.out.println("Ange max 10 tal. Q avslutar.");
+### Exempelkod:
 
-    // skapa en array med plats för 10 flyttal
-    double [] resultat = new double[10];
+```java
+System.out.println("Ange max 10 tal. Q avslutar.");
 
-    // skapa ett inläsningsobjekt med klassen Scanner
-    Scanner s = new Scanner(System.in);
+/* Skapa en array med plats för 10 flyttal. */
+double [] resultat = new double[10];
 
-    // Skapa en räknare som pekar ut rätt index
-    int maxIndex = 0;                           // antal inlästa element
+/* Skapa ett inläsningsobjekt med klassen 'Scanner'. */
+Scanner s = new Scanner(System.in);
 
-    // repetera så länge det finns indata och plats
-    while (s.hasNextDouble() && maxIndex < 10) {
-        resultat[maxIndex++] = s.nextDouble();
-    }
+/* Skapa en räknare som pekar ut rätt index. */
+int maxIndex = 0;       // Antal inlästa element.
 
-    /* Utskrift av värden från arrayen */
-    // skriv ut alla inmatade värden
-    for (int i = 0 ; i < maxIndex; i++) {
-        System.out.println(resultat[i]);
-    }
+/* Repetera så länge det finns indata och plats. */
+while (s.hasNextDouble() && maxIndex < 10) {
+    resultat[maxIndex++] = s.nextDouble();
+}
+
+/* Skriv ut alla inmatade värden */
+for (int i = 0 ; i < maxIndex; i++) {
+    System.out.println(resultat[i]);
+}
+```
 
 ### Körexempel:
 
-    C:\>java InUtArray
-    Ange max 10 tal. Q avslutar.
-    5293761084
+```
+C:\>java InUtArray
+Ange max 10 tal. Q avslutar.
+5293761084
 
-    Q
-    5.0
-    2.0
-    9.0
-    3.0
-    7.0
-    6.0
-    1.0
-    0.0
-    8.0
-    4.0
+Q
+5.0
+2.0
+9.0
+3.0
+7.0
+6.0
+1.0
+0.0
+8.0
+4.0
 
-    C:\>
+C:\>
+```
 
 
 Enkel sortering
@@ -2204,9 +2469,11 @@ Enkel sortering
 
 * Bubbelsortering -- idé:
 
-    + Antag array med N stycken element
-    + Iterera genom alla intilliggande par, d.v.s.
-      element `(1,2)`, `(2,3)`, `(3,4)`, ..., `(N-1,N)`
+    + Antag array med *N* stycken element.
+
+    + Iterera genom alla intilliggande par, d.v.s.  element
+      $(1,2), (2,3), (3,4), ..., (N-1,N)$.
+
     + Jämför aktuellt elementpar och byt inbördes plats på de par som är fel
       ordnade. Upprepa tills inga utbyten längre behövs.
 
@@ -2217,48 +2484,51 @@ Fördjupning i sorteringsmetoder: [Algorithms, the Java Tutorials].
 [Algorithms, the Java Tutorials]:
 https://docs.oracle.com/javase/tutorial/collections/algorithms/
 
+
 Algoritm i pseudokod
 --------------------
 
-
-> * Array med N element given
+> * Array med *N* element given
 > * Variabel sortera sätts till **sant**
 > * Upprepa så länge som sortera är **sant**
->     * sortera sätts till **falskt**
->     * Upprepa för element e = 1 till e = N-1
->         * Om array[e] > array[e+1]
->             * Byt plats på element e och e+1
->             * sortera sätts till sant
+>     * Sortera sätts till **falskt**
+>     * Upprepa för element `e = 1` till `e = N-1`
+>         * Om `array[e]` > `array[e+1]`
+>             * Byt plats på element $e$ och $e+1$
+>             * Sortera sätts till sant.
 
 
 Algoritm i Java-kod
 -------------------
 
-    Att skicka en array som parameter till en metod! ---.
-                                                        |
-    public void sortera(double [] array)  <-------------'
-    {
-        boolean sortera = true;
-        final int N     = array.length;
+```java
+Att skicka en array som parameter till en metod! ---.
+                                                    |
+public void sortera(double [] array)  <-------------'
+{
+    boolean sortera = true;
+    final int N     = array.length;
 
-        while (sortera) {
-            sortera = false;
+    while (sortera) {
+        sortera = false;
 
-            for (int e = 0; e < N-1 ; e++) {
-                if (array[e] > array[e + 1]) {
-                    double tmp   = array[e];        // byt plats
-                    array[e]     = array[e + 1];
-                    array[e + 1] = tmp;
+        for (int e = 0; e < N - 1; e++) {
+            if (array[e] > array[e + 1]) {
+                double tmp   = array[e];        // Byt plats.
+                array[e]     = array[e + 1];
+                array[e + 1] = tmp;
 
-                    sortera = true;                 // fortsätt sortera
-                }
+                sortera = true;                 // Fortsätt sortera.
             }
         }
     }
+}
+```
 
+Körning
+-------
 
-Första iterationen
-------------------
+### Första iterationen
 
     [5] [2]  9   3   7   6   1   0   8   4
 
@@ -2279,8 +2549,7 @@ Första iterationen
      2   5   3   7   6   1   0   8   4   9
 
 
-Andra iterationen
------------------
+### Andra iterationen
 
     2  [5] [3]  7   6   1   0   8   4   9
 
@@ -2295,8 +2564,7 @@ Andra iterationen
     2   3   5   6   1   0   7   4   8   9
 
 
-Tredje iterationen
-------------------
+### Tredje iterationen
 
     2   3   5  [6] [1]  0   7   4   8   9
 
@@ -2306,8 +2574,8 @@ Tredje iterationen
 
     2   3   5   1   0   6   4   7   8   9
 
-Fjärde iterationen
-------------------
+
+### Fjärde iterationen
 
     2   3  [5] [1]  0   6   4   7   8   9
 
@@ -2318,8 +2586,7 @@ Fjärde iterationen
     2   3   1   0   5   4   6   7   8   9
 
 
-Femte iterationen
------------------
+### Femte iterationen
 
     2  [3] [1]  0   5   4   6   7   8   9
 
@@ -2330,8 +2597,7 @@ Femte iterationen
     2   1   0   3   4   5   6   7   8   9
 
 
-Sjätte iterationen
-------------------
+### Sjätte iterationen
 
     [2] [1]  0   3   4   5   6   7   8   9
 
@@ -2340,8 +2606,7 @@ Sjätte iterationen
      1   0   2   3   4   5   6   7   8   9
 
 
-Sjunde iterationen
-------------------
+### Sjunde iterationen
 
     [1] [0]  2   3   4   5   6   7   8   9
 
@@ -2354,7 +2619,7 @@ Insikter
 * När en array skickas till en metod kan orginalobjektet komma att påverkas
   eftersom metoden hanterar samma objekt som "omvärlden".
 
-* Det är referensvariabelns värde som kopieras -- inte array-objektet.
+* Det är *referensvariabelns värde* som kopieras -- inte array-objektet.
 
                    .--------------------.
                    | sortera   (array); |
@@ -2377,40 +2642,44 @@ Arrayer för referenser (till objekt)
 ------------------------------------
 
 * I Java hanteras objekt -- hur hanteras många?
-  (T.ex. i arrayer av lämplig typ)
+    - (T.ex. i arrayer av lämplig typ)
 
-* Anta att vi har klassen Person med attributen förnamn, efternamn och ålder:
+* Anta att vi har klassen `Person` med attributen *förnamn*, *efternamn* och *ålder*:
 
-        class Person
-        {
-            private String enamn, fnamn;
-            private int alder;
+```java
+    class Person
+    {
+        private String enamn, fnamn;
+        private int alder;
 
-            public Person (String e, String f, int a) {
-                enamn = e;
-                fnamn = f;
-                alder = a;
-            }
-
-            public String toString() {
-                return enamn + " " + fnamn + ", " + alder;
-            }
-
-            public void print() {
-                System.out.println(toString());
-            }
+        public Person (String e, String f, int a) {
+            enamn = e;
+            fnamn = f;
+            alder = a;
         }
+
+        public String toString() {
+            return enamn + " " + fnamn + ", " + alder;
+        }
+
+        public void print() {
+            System.out.println(toString());
+        }
+    }
+```
 
 
 Array med referenser
 --------------------
 
-En array som kan hantera 10 personer:
+* En array som kan hantera 10 personer:
 
+    ```java
     Person [] grupp = new Person[10];
+    ```
 
-Denna array innehåller nu 10 element, där varje element är en referens.
-Dessa har värdet null, det skapas alltså **INTE** 10 personer!
+* Denna array innehåller nu 10 element, där varje element är en referens.
+* Dessa har värdet *null*, det skapas alltså **INTE** 10 personer!
 
 
 En bild av arrayen
@@ -2430,16 +2699,18 @@ En bild av arrayen
 Lägg in objekt
 --------------
 
-    grupp[0] = new Person("Andersson", "Eva",       22 );
-    grupp[1] = new Person("Petterson", "Adam",      44 );
-    grupp[2] = new Person("Davidson",  "Anna",      15 );
-    grupp[3] = new Person("Enoksson",  "Frans",     65 );
-    grupp[4] = new Person("Boudien",   "Gunilla",   24 );
-    grupp[5] = new Person("Hård",      "Niclas",    29 );
-    grupp[6] = new Person("Fridegård", "Lisa",      33 );
-    grupp[7] = new Person("Rask",      "Johan",     18 );
-    grupp[8] = new Person("Munter",    "Camilla",   20 );
-    grupp[9] = new Person("Ståhl",     "Peter",     19 );
+```java
+grupp[0] = new Person("Andersson", "Eva",       22 );
+grupp[1] = new Person("Petterson", "Adam",      44 );
+grupp[2] = new Person("Davidson",  "Anna",      15 );
+grupp[3] = new Person("Enoksson",  "Frans",     65 );
+grupp[4] = new Person("Boudien",   "Gunilla",   24 );
+grupp[5] = new Person("Hård",      "Niclas",    29 );
+grupp[6] = new Person("Fridegård", "Lisa",      33 );
+grupp[7] = new Person("Rask",      "Johan",     18 );
+grupp[8] = new Person("Munter",    "Camilla",   20 );
+grupp[9] = new Person("Ståhl",     "Peter",     19 );
+```
 
 
 En bild av arrayen
@@ -2472,39 +2743,44 @@ grupp[1] /     grupp[3] /      grupp[5] /       grupp[7] /      grupp[9] /
 ```
 
 
+Alternativt -- lägg till objekt vid initiering
+----------------------------------------------
 
-Alt: lägg till objekt i initiering
-----------------------------------
+Fördelen är bl.a. att man inte måste ange storlek.
 
-    Person [] grupp = {
-        new Person("Andersson",  "Eva",      22),
-        new Person("Petterson",  "Adam",     44),
-        new Person("Davidson",   "Anna",     15),
-        new Person("Enoksson",   "Frans",    65),
-        new Person("Boudien",    "Gunilla",  24),
-        new Person("Hård",       "Niclas",   29),
-        new Person("Fridegård",  "Lisa",     33),
-        new Person("Rask",       "Johan",    18),
-        new Person("Munter",     "Camilla",  20),
-        new Person("Ståhl",      "Peter",    19)
-    };
+### Exempel:
 
-    //Fördelen är bl.a. att man inte måste ange storlek
+```java
+Person [] grupp = {
+    new Person("Andersson",  "Eva",      22),
+    new Person("Petterson",  "Adam",     44),
+    new Person("Davidson",   "Anna",     15),
+    new Person("Enoksson",   "Frans",    65),
+    new Person("Boudien",    "Gunilla",  24),
+    new Person("Hård",       "Niclas",   29),
+    new Person("Fridegård",  "Lisa",     33),
+    new Person("Rask",       "Johan",    18),
+    new Person("Munter",     "Camilla",  20),
+    new Person("Ståhl",      "Peter",    19)
+};
+```
 
 
 Personerna individuellt
 -----------------------
 
-    // Plocka fram en person ur arrayen:
+* Plocka fram en person ur arrayen:
 
-    Person p = grupp[4];    // gunilla
-    p.print();              // skriver ut info
+    ```java
+    Person p = grupp[4];            // Gunilla
+    p.print();                      // Skriver ut info.
+    ```
 
-    // Men eftersom referenserna finns i arrayen
-    // så kan man skriva direkt:
+* Men eftersom referenserna finns i arrayen så kan man direkt skriva:
 
-
+    ```java
     grupp[4].print();
+    ```
 
 
 Personerna som grupp
@@ -2521,7 +2797,7 @@ grupp av personer:
 Att överföra arrayer till metoder
 ---------------------------------
 
-```
+```java
                            .----------------- OBS! syntax för array-parameter
                            |      .---------- Den lokala parameterns namn
                            |      |     .---- Arrayens längd
@@ -2541,12 +2817,14 @@ OBS! toString() behöver inte anges ----------'
 Att anropa metoden
 ------------------
 
-    // Antag att vi har vår gamla array med 10 personer:
+```java
+// Antag att vi har vår gamla array med 10 personer:
 
-    Person [] grupp = new Person[10];
-    grupp[0] = new Person("Andersson", "Eva", 22);  // OSV...
+Person [] grupp = new Person[10];
+grupp[0] = new Person("Andersson", "Eva", 22);  // OSV...
 
-    skrivUt(grupp);                                 //Metodanropet:
+skrivUt(grupp);                                 //Metodanropet:
+```
 
 
 ### Utskrift:
@@ -2569,10 +2847,12 @@ Varning för null!
 
 Eftersom vi här hanterar referenser så kan vi få problem.
 
-Antag att något element råkar vara null, t.ex. genom att arrayen inte är fylld
-eller att något element har satts till **null**:
+* Antag att något element råkar vara *null*, t.ex. genom att arrayen inte är fylld
+  eller att något element har satts till *null*:
 
+    ```java
     grupp[5] = null;
+    ```
 
 
 En bild av arrayen
@@ -2611,7 +2891,7 @@ Vad händer nu?
 Det går alldeles utmärkt att skicka arrayen till metoden `skrivUt()`.
 Men inne i metoden anropas ju `toString()` på alla element (personer).
 
-När loopen kommer till index 5 så blir det i princip: *null.toString()*.
+När loopen kommer till index 5 så blir det i princip: `null.toString()`.
 
 Man kan ju inte anropa en metod i ett objekt som inte finns!
 
@@ -2621,56 +2901,63 @@ Programmet avbryts av en **null pointer exception**.
 Eller ännu hemskare
 -------------------
 
-
 * Hela array-objektet har tagits bort.
 * Kom ihåg att arrayen i sig själv är ett objekt.
 
-        Person [] grupp = new Person[10];
+    ```
+    Person [] grupp = new Person[10];
 
-        ...
+    ...
 
-        grupp = null;
+    grupp = null;
+    ```
 
 
 ### En bild av arrayen:
 
-     grupp
-    .------.
-    | null |
-    '------'
+```
+ grupp
+.------.
+| null |
+'------'
+```
 
 
 Analys
 ------
 
-                                      .---------- Kan vara null
-                                      |
-                                      v
-    public void skrivUt(Person [] personer)
-    {
-        for (int i = 0; i < personer.length; i++) {
-            System.out.println(personer[i].toString());
-        }
-    }                                  ^         ^
-                                       |         |
-    Risk för null-pointer exception ---+---------'
-    i både '.length' och '.toString'
+```java
+                                  .---------- Kan vara null
+                                  |
+                                  v
+public void skrivUt(Person [] personer)
+{
+    for (int i = 0; i < personer.length; i++) {
+        System.out.println(personer[i].toString());
+    }
+}                                  ^         ^
+                                   |         |
+Risk för null-pointer exception ---+---------'
+i både '.length' och '.toString'
+```
 
 
 Åtgärd
 ------
 
-                                      .---------- Kan vara null
-                                      |
-                                      v
-    public void skrivUt(Person [] personer)
-    {
-        if (personer != null)                            <------ Kontrollera!
-        for (int i=0; i < personer.length; i++) {
-            if (personer[i] != null)                     <------ Kontrollera!
-            System.out.println(personer[i].toString());
-        }
+```java
+                                  .---------- Kan vara null
+                                  |
+                                  v
+public void skrivUt(Person [] personer)
+{
+    if (personer != null)                            <------ Kontrollera!
+    for (int i=0; i < personer.length; i++) {
+        if (personer[i] != null)                     <------ Kontrollera!
+        System.out.println(personer[i].toString());
     }
+}
+```
 
 
 Parametrarna till main
@@ -2678,47 +2965,59 @@ Parametrarna till main
 
 ### Programstart från kommandorad:
 
-    >java TestClass adam bertil 123 667
-                     |     |     |   |
-          args[0] <--'     |     |   |
-          args[1] <--------'     |   |
-          args[2] <--------------'   |
-          args[3] <------------------'
-             |
-             '-------------------------.
-                                       |
-                                       v
-    public static void main(String [] args)
-    {
-        for (int i = 0; i < args.length; i++)
-            System.out.println(args[i]);
-    }
+```
+>java TestClass adam bertil 123 667
+                 |     |     |   |
+      args[0] <--'     |     |   |
+      args[1] <--------'     |   |
+      args[2] <--------------'   |
+      args[3] <------------------'
+         |
+         '-------------------------.
+                                   |
+                                   v
+```
+```java
+public static void main(String [] args)
+{
+    for (int i = 0; i < args.length; i++)
+        System.out.println(args[i]);
+}
+```
 
 
+Mer om "command-line arguments"
+-------------------------------
 
-Utökat exempel på körning, command-line arguments med '\\0'-terminated strings:
+Extra exempel på command-line arguments med "`'\\0'`-terminated
+strings". Hämtat från egna anteckningar om C-programmering i inbyggda system.
 
 
-### Programstart från kommandorad:
+* Programstart från kommandorad:
 
+    ```
     $ ./progname one two three
+    ```
 
-### Argumentarrayens innehåll:
+* Argumentarrayens innehåll:
 
+    ```
     argc        4
     argv[0]     progname
     argv[1]     one
     argv[2]     two
     argv[3]     three
+    ```
 
 
-### Datavisualisering, tecken för tecken:
+* Datavisualisering, tecken för tecken:
 
-      p  r  o  g  n  a  m  e  \\0   o  n  e  \\0   t  w  o  \\0   t  h  r  e  e  \\0
-    |___.__.__.__.__.__.__.__.___|___.__.__.___|___.__.__.___|___.__.__.__.__.___|
-    |   |  |  |  |  |  |  |  |###|   |  |  |###|   |  |  |###|   |  |  |  |  |###|
-    |            argv[0]         |   argv[1]   |   argv[2]   |      argv[3]      |
-
+    ```
+      p  r  o  g  n  a  m  e  \0  o  n  e  \0  t  w  o  \0  t  h  r  e  e  \0
+    |___.__.__.__.__.__.__.__.__|___.__.__.__|___.__.__.__|___.__.__.__.__.__|
+    |   |  |  |  |  |  |  |  |##|   |  |  |##|   |  |  |##|   |  |  |  |  |##|
+    |            argv[0]        |   argv[1]  |   argv[2]  |      argv[3]     |
+    ```
 
 
 Flerdimensionella arrayer
@@ -2726,11 +3025,13 @@ Flerdimensionella arrayer
 
 * Eftersom arrayer är objekt, så måste de ju kunna ligga i arrayer, ...
 
-* Vi kan skapa arrayer med godtyckligt många dimensioner:
+* Vi kan skapa arrayer med *godtyckligt* många dimensioner:
 
-        int [][] tabell = new int[4][4];
+    ```java
+    int [][] tabell = new int[4][4];
+    ```
 
-* Tabell är en referens till ett array-objekt som kan innehåller referenser
+* Tabell är en referens till ett array-objekt som kan innehålla referenser
   till en-dimensionella arrayer.
 
 
@@ -2782,38 +3083,42 @@ tabell              |       /
 ```
 
 
-### Exempelkod och utskrift:
+### Exempelkod:
 
-    for (int i = 0; i < tabell.length; i++)
-        for (int j = 0; j < tabell[i].length; j++)
-            System.out.println(tabell[i][j]);
+```java
+for (int i = 0; i < tabell.length; i++)
+    for (int j = 0; j < tabell[i].length; j++)
+        System.out.println(tabell[i][j]);
+```
 
 ### Utskrift:
 
-    1
-    4
-    2
-    12
-    3
-    4
-    3
-    5
-    5
-    65
-    3
-    3
-    6
-    5
-    3
-    8
+```
+1
+4
+2
+12
+3
+4
+3
+5
+5
+65
+3
+3
+6
+5
+3
+8
+```
 
 
 Problem -- arrayer har fix storlek
 ----------------------------------
-
 Programmet är begränsat till att hantera max t.ex. 10 resultat.
 Det är Svårt att "sätta in" objekt inne i arrayen och att "ta bort" element ur
 arrayen.
+
 Vi vill att:
 
 * Programmet skall kunna hantera godtyckligt många element.
@@ -2824,6 +3129,8 @@ Vi vill att:
 
 **Nästa föreläsning: Listor!**
 
+
+--------------------------------------------------------------------------------
 
 
 Föreläsning 7 - Listor i Java
@@ -2945,10 +3252,12 @@ List -- ett interface
 
 Eller om ni vill; skriv en egen klass som implementerar `List:`
 
-    class MyList implements List
-    {
-        ...
-    }
+```java
+class MyList implements List
+{
+    ...
+}
+```
 
 
 <!--Sätt i ett batteri från Varta...-->
@@ -3043,39 +3352,45 @@ Eller om ni vill; skriv en egen klass som implementerar `List:`
 Att skapa listor
 ----------------
 
-    // Specifik hantering:
-    Vector v     = new Vector();
-    LinkedList l = new LinkedList();
-    ArrayList a  = new ArrayList();
+```java
+// Specifik hantering:
+Vector v     = new Vector();
+LinkedList l = new LinkedList();
+ArrayList a  = new ArrayList();
 
-    //Generell hantering:
-    List list = new Vector();       // eller ..
-    List list = new LinkedList();   // eller ..
-    List list = new ArrayList();
-              ^
-              |
-              '---  Fungerar eftersom ArrayList implements List
+//Generell hantering:
+List list = new Vector();       // eller ..
+List list = new LinkedList();   // eller ..
+List list = new ArrayList();
+          ^
+          |
+          '---  Fungerar eftersom ArrayList implements List
+```
 
 
 Att lägga in data i listor
 --------------------------
 
-    Vector v = new Vector();
+```java
+Vector v = new Vector();
 
-    v.add("första strängen" );
-    v.add("andra strängen" );
-    v.add("tredje strängen" );
-    v.add("fjärde strängen" );
+v.add("första strängen" );
+v.add("andra strängen" );
+v.add("tredje strängen" );
+v.add("fjärde strängen" );
+```
 
 
 Objekttypen är godtycklig
 -------------------------
 
-    Vector v = new Vector();
+```java
+Vector v = new Vector();
 
-    v.add(new Person("Älg"     , "Eva" , 25));
-    v.add(new Person("Persson" , "Ola" , 35));
-    v.add(new Person("Svan"    , "Mia" , 15));
+v.add(new Person("Älg"     , "Eva" , 25));
+v.add(new Person("Persson" , "Ola" , 35));
+v.add(new Person("Svan"    , "Mia" , 15));
+```
 
 
 Studie av add
@@ -3105,72 +3420,84 @@ När man ska hämta ut ett objekt ur en lista har man två val:
 1. Använd en referensvariabel av typen Object. Då skjuter man upp problemet
    till ett senare tillfälle.
 
-        Object o = list.get(5);
-        // OK inget kompileringsfel
+    ```java
+    Object o = list.get(5);
+    // OK inget kompileringsfel
+    ```
 
 2. Typkonvertera (casta) referensen som kommer ut ur listan till den typ som
    referensvariabel har. Förutsätter att objektet verkligen har den typen.
 
-        Elefant e = (Elefant)list.get(3);
-        // om elementet "är" en elefant är det ok
+    ```java
+    Elefant e = (Elefant)list.get(3);
+    // om elementet "är" en elefant är det ok
+    ```
 
 
 Att skicka listor till metoder
 ------------------------------
 
-    // Använd generell hantering:
-    public void printList(List list)
-    {
-        if (list != null) {                             // bra att kolla
-            for (int i = 0; i < list.size(); i++)       // size() anger storlek
-                System.out.println("Nr: " + i + list.get(i));
-        }
+```java
+// Använd generell hantering:
+public void printList(List list)
+{
+    if (list != null) {                             // bra att kolla
+        for (int i = 0; i < list.size(); i++)       // size() anger storlek
+            System.out.println("Nr: " + i + list.get(i));
     }
+}
 
-    // Anrop:
-    Vector v = new Vector();
-    printList(v);               // funkar eftersom Vector är en List
+// Anrop:
+Vector v = new Vector();
+printList(v);               // funkar eftersom Vector är en List
+```
 
 
 Bättre traversering i Java 1.5
 ------------------------------
 
-    // Ineffektivt att anropa size() och get() varje varv:
-    for (int i = 0; i < list.size(); i++)
-        System.out.println(list.get(i));
+```java
+// Ineffektivt att anropa size() och get() varje varv:
+for (int i = 0; i < list.size(); i++)
+    System.out.println(list.get(i));
 
-    // Java 1.5 -- helt ny for-loop för listor:
-    for (Object element : list)
-        System.out.println(element);
-
-
-Templates i Java 1.5
---------------------
-
-    // Nytt i Java 1.5
-    // Denna lista hanterar endast personer
-    List<Person> plist = new Vector<Person>();
-
-    plist.add(new Person("Olsson" , "Berit" , 33);
-    plist.add(new Person("Agard"  , "Eva"   , 19);
-
-    // Då slipper man casta:
-    Person p = plist.get(1);
-    System.out.println(p.toString());
+// Java 1.5 -- helt ny for-loop för listor:
+for (Object element : list)
+    System.out.println(element);
+```
 
 
 Templates i Java 1.5
 --------------------
 
-    List<Person> plist = new Vector<Person>();
+```java
+// Nytt i Java 1.5
+// Denna lista hanterar endast personer
+List<Person> plist = new Vector<Person>();
 
-    plist.add(new Person("Olsson" , "Berit" , 33);
-    plist.add(new Person("Agard"  , "Eva"   , 19);
+plist.add(new Person("Olsson" , "Berit" , 33);
+plist.add(new Person("Agard"  , "Eva"   , 19);
 
-    ...
+// Då slipper man casta:
+Person p = plist.get(1);
+System.out.println(p.toString());
+```
 
-    for (Person p : plist)      // alla personer
-        p.print();              // i listan
+
+Templates i Java 1.5
+--------------------
+
+```java
+List<Person> plist = new Vector<Person>();
+
+plist.add(new Person("Olsson" , "Berit" , 33);
+plist.add(new Person("Agard"  , "Eva"   , 19);
+
+...
+
+for (Person p : plist)      // alla personer
+    p.print();              // i listan
+```
 
 
 Rekursion
@@ -3188,15 +3515,17 @@ Rekursion
 Rekursiv räknare 1
 ------------------
 
-    // rekursiv funktion som räknar ner till 0
+```java
+// rekursiv funktion som räknar ner till 0
 
-    public void countDown(int n)
-    {
-        System.out.println(n);
+public void countDown(int n)
+{
+    System.out.println(n);
 
-        if (n > 0)              // rekursiva fallet
-            countDown(n-1);
-    }
+    if (n > 0)              // rekursiva fallet
+        countDown(n-1);
+}
+```
 
 
 <!--countDown(3);-->
@@ -3236,15 +3565,17 @@ Rekursiv räknare 1
 Rekursiv räknare 2
 ------------------
 
-    // rekursiv funktion som räknar från 0 till n
+```java
+// rekursiv funktion som räknar från 0 till n
 
-    public void countUp(int n)
-    {
-        if (n > 0)              // rekursiva fallet
-            countDown(n - 1);
+public void countUp(int n)
+{
+    if (n > 0)              // rekursiva fallet
+        countDown(n - 1);
 
-        System.out.println(n);
-    }
+    System.out.println(n);
+}
+```
 
 <!--countUp(3);-->
 
@@ -3287,18 +3618,20 @@ Rekursiv räknare 2
 Rekursion på sträng
 -------------------
 
-    // rekursivt sätt att vända en sträng - ineffektiv
-    // antar s != null
+```java
+// rekursivt sätt att vända en sträng - ineffektiv
+// antar s != null
 
-    public String reverse(String s)
-    {
-        if (s.length() <= 1)                // basfallet
-            return s;
+public String reverse(String s)
+{
+    if (s.length() <= 1)                // basfallet
+        return s;
 
-        String head = s.substring(0,1);     // första
-        String tail = s.substring(1);       // resten
-        return reverse(tail) + head;
-    }
+    String head = s.substring(0,1);     // första
+    String tail = s.substring(1);       // resten
+    return reverse(tail) + head;
+}
+```
 
 
 <!--rev("sirap");-->
@@ -3338,27 +3671,31 @@ Dagens sista fråga:
 Hur skriver man en metod som avgör om en sträng är ett palindrom?
 T.ex. "nitalarbralatin"
 
-    public boolean isPalindrome(String s)
+* `public boolean isPalindrome(String s)`
 
 
 Använd det du redan har!
 ------------------------
 
-    public boolean isPalindrome(String s)
-    {
-        return s.equals(reverse(s));
-    }
+```java
+public boolean isPalindrome(String s)
+{
+    return s.equals(reverse(s));
+}
 
-    public String reverse(String s)
-    {
-        if (s.length() <= 1)                // basfallet
-            return s;
+public String reverse(String s)
+{
+    if (s.length() <= 1)                // basfallet
+        return s;
 
-        String head = s.substring(0,1);     // första
-        String tail = s.substring(1);       // resten
-        return reverse(tail) + head;
-    }
+    String head = s.substring(0,1);     // första
+    String tail = s.substring(1);       // resten
+    return reverse(tail) + head;
+}
+```
 
+
+--------------------------------------------------------------------------------
 
 
 Föreläsning 8 -- Wrapper-klasser, Autoboxing, listor i Java
@@ -3372,48 +3709,7 @@ Listor i Java hanterar endast objekt!
 
 * Men kan man inte göra en klass som innehåller ett numeriskt värde?
 
-        class Number
-        {
-            private int number;
-
-            public Number(int n)
-            {
-                number = n;
-            }
-
-            public int getValue()
-            {
-                return number;
-            }
-        }
-
-
-Hur "stoppar man in"?
----------------------
-
-    List<Number> lista = new Vector<Number>();    // Skapa listan.
-
-    for (int i = 1; i <= 10; i++) {               // Stoppa in 1..10 i listan.
-        Number n = new Number(i);                 // Skapa ett objekt som innehåller talet.
-        lista.add(n);                             // Lägg in i listan.
-    }
-
-
-Hur "plockar man ut"?
----------------------
-
-    // Samma lista som på föregående bild...
-
-    // plocka ut och skriv ut
-    for (int i = 0; i < lista.size(); i++) {
-        Number n = lista.get(i);                // Hämta ut objektet ur listan.
-        System.out.println(n.getValue());       // Skriv ut talet som finns inuti objektet.
-    }
-
-
-Vi kan göra det bekvämt med toString()!
----------------------------------------
-
+    ```java
     class Number
     {
         private int number;
@@ -3427,47 +3723,102 @@ Vi kan göra det bekvämt med toString()!
         {
             return number;
         }
-
-        public String toString()
-        {
-            return "" + number;         // Returnerar en strängrepresentation av talet.
-        }
     }
+    ```
+
+
+Hur "stoppar man in"?
+---------------------
+
+```java
+List<Number> lista = new Vector<Number>();    // Skapa listan.
+
+for (int i = 1; i <= 10; i++) {               // Stoppa in 1..10 i listan.
+    Number n = new Number(i);                 // Skapa ett objekt som innehåller talet.
+    lista.add(n);                             // Lägg in i listan.
+}
+```
+
+
+Hur "plockar man ut"?
+---------------------
+
+```java
+// Samma lista som på föregående bild...
+
+// plocka ut och skriv ut
+for (int i = 0; i < lista.size(); i++) {
+    Number n = lista.get(i);                // Hämta ut objektet ur listan.
+    System.out.println(n.getValue());       // Skriv ut talet som finns inuti objektet.
+}
+```
+
+
+Vi kan göra det bekvämt med toString()!
+---------------------------------------
+
+```java
+class Number
+{
+    private int number;
+
+    public Number(int n)
+    {
+        number = n;
+    }
+
+    public int getValue()
+    {
+        return number;
+    }
+
+    public String toString()
+    {
+        return "" + number;         // Returnerar en strängrepresentation av talet.
+    }
+}
+```
 
 
 Enklare att skriva ut
 ---------------------
 
-    // plocka ut och skriv ut
-    for (int i = 0; i < lista.size(); i++) {
-        Number n = lista.get(i);                //Hämta ut objektet ur listan:
-        System.out.println(n);                  // Skriv ut talet som finns inuti objektet.
-                                                // toString() anropas automatiskt av println.
-    }
+```java
+// plocka ut och skriv ut
+for (int i = 0; i < lista.size(); i++) {
+    Number n = lista.get(i);        // Hämta ut objektet ur listan:
+    System.out.println(n);          // Skriv ut talet som finns inuti objektet.
+                                    // toString() anropas automatiskt av println.
+}
+```
 
 
 ... och ännu enklare...
 -----------------------
 
-    // plocka ut och skriv ut
-    for (int i = 0; i < lista.size(); i++) {
-        System.out.println(lista.get(i).getNumber());
-    }                                ^
-                                     |
-                                     '--- Objektet hämtas ut och
-                                             getNumber() anropas
+```java
+// plocka ut och skriv ut
+for (int i = 0; i < lista.size(); i++) {
+    System.out.println(lista.get(i).getNumber());
+}                                ^
+                                 |
+                                 '--- Objektet hämtas ut och
+                                         getNumber() anropas
+```
 
 
 ... och ännu enklare...
 -----------------------
 
-    // plocka ut och skriv ut
-    for (int i = 0; i < lista.size(); i++) {
-        System.out.println(lista.get(i));
-    }                                ^
-                                     |
-                                     '--- Objektet hämtas ut
-                                          och toString() anropas
+```java
+// plocka ut och skriv ut
+for (int i = 0; i < lista.size(); i++) {
+    System.out.println(lista.get(i));
+}                              ^
+                               |
+                               '--- Objektet hämtas ut
+                                    och toString() anropas
+```
 
 ... och ännu enklare...
 -----------------------
@@ -3475,13 +3826,15 @@ Enklare att skriva ut
 * Använd den nya for-loopen för listor
 * Då slipper vi indexera
 
-    // plocka ut och skriv ut
-    for (Number n : lista) {
-        System.out.println(n);
-    }                    ^
-                         |
-                         '--- Objektet hämtas ut
-                              och toString() anropas
+```java
+// plocka ut och skriv ut
+for (Number n : lista) {
+    System.out.println(n);
+}                    ^
+                     |
+                     '--- Objektet hämtas ut
+                          och toString() anropas
+```
 
 
 MEN -- måste vi skriva klassen Number?
@@ -3562,10 +3915,12 @@ Vad wrappas in?
 
 * Men referenser kan referera till instanser av wrapperklasser.
 
-        Integer i = new Integer(5);
-        Integer j = new Integer("156");
-        int     a = i.intValue();           // hämta ut primitivt värde
-        String  s = i.toString();
+    ```java
+    Integer i = new Integer(5);
+    Integer j = new Integer("156");
+    int     a = i.intValue();           // hämta ut primitivt värde
+    String  s = i.toString();
+    ```
 
 * Detta innebär att man kan använda dem t.ex. i listor.
 
@@ -3578,17 +3933,19 @@ och Wrapper-objekt.
 
 ### Exempel:
 
-    Integer i;
-    int     j;
+```java
+Integer i;
+int     j;
 
-    i = 5;
-    // automatiskt: i = new Integer(5);
+i = 5;
+// automatiskt: i = new Integer(5);
 
-    j = i;
-    // automatiskt: j = i.intValue();
+j = i;
+// automatiskt: j = i.intValue();
 
-    i = i + j;
-    // automatiskt: i = new Integer( i.intValue() + j );
+i = i + j;
+// automatiskt: i = new Integer( i.intValue() + j );
+```
 
 Kom ihåg att ovanstående kod kan vara ineffektiv.
 
@@ -3598,18 +3955,20 @@ Auto -boxing och --unboxing för listor!
 
 Detta gör det enkelt att hantera primitiva värden i listor.
 
-    import java.util.*;
+```java
+import java.util.*;
 
-    List<Integer> lista = new Vector<Integer>();
+List<Integer> lista = new Vector<Integer>();
 
-    for (int i = 0; i < 100; i++)
-        lista.add(i);
+for (int i = 0; i < 100; i++)
+    lista.add(i);
 
-    for (int i : lista)
-        System.out.println( i );
+for (int i : lista)
+    System.out.println( i );
 
-    int ivar = l.get(7);
-    System.out.println(ivar);
+int ivar = l.get(7);
+System.out.println(ivar);
+```
 
 
 Var läggs elementen in?
@@ -3634,49 +3993,52 @@ Finns ett visst objekt?
 Ex. en kö (sist in -- sist ut)
 ------------------------------
 
-    class Queue
+```java
+class Queue
+{
+    private List<Integer> list = new Vector<Integer>();
+
+    public void in(Integer i)
     {
-        private List<Integer> list = new Vector<Integer>();
-
-        public void in(Integer i)
-        {
-            list.add(i);                // sist
-        }
-
-        public Integer out()
-        {
-            return list.remove(0);      // först
-        }
-
-        public boolean isEmpty()
-        {
-            return list.isEmpty();
-        }
+        list.add(i);                // sist
     }
 
+    public Integer out()
+    {
+        return list.remove(0);      // först
+    }
+
+    public boolean isEmpty()
+    {
+        return list.isEmpty();
+    }
+}
+```
 
 Ex. en stack (sist in -- först ut)
 ----------------------------------
 
-    class Stack
+```java
+class Stack
+{
+    private List<Integer> list = new Vector<Integer>();
+
+    public void push(Integer i)
     {
-        private List<Integer> list = new Vector<Integer>();
-
-        public void push(Integer i)
-        {
-            list.add(0,i);              // först
-        }
-
-        public Integer pop()
-        {
-            return list.remove(0);      // först
-        }
-
-        public boolean isEmpty()
-        {
-            return list.isEmpty();
-        }
+        list.add(0,i);              // först
     }
+
+    public Integer pop()
+    {
+        return list.remove(0);      // först
+    }
+
+    public boolean isEmpty()
+    {
+        return list.isEmpty();
+    }
+}
+```
 
 
 Använda Queue & Stack
