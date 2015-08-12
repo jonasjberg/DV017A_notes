@@ -18,6 +18,6 @@ kan således mycket väl innehålla faktafel. Dokumentet uppdateras löpande und
 kursens gång.
 
 ### Licens
-Creative Commons Non-Commercial Share Alike 3.0
+Creative Commons Non-Commercial Share Alike 3.0  
 Se `LICENSE.md` för fullständig licensieringsinformation.
 
