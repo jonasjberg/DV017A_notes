@@ -2,11 +2,12 @@
 
 ## Studieanteckningar för DV017A -- Inledande Programmering i Java
 
-| Jonas Sjöberg
-| Högskolan i Gävle
-
-`tel12jsg@student.hig.se`
-`https://www.github.com/jonasjberg`
+Jonas Sjöberg  
+Högskolan i Gävle
+```
+tel12jsg@student.hig.se
+https://www.github.com/jonasjberg
+```
 
 
 ### Abstrakt
