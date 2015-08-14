@@ -959,6 +959,72 @@ Operationer ----------> | körTill      (v : int) |       /
                         '------------------------'
 ```
 
+Klassmedlemmar
+--------------
+
+* Åtkomst av klassmedlemmar -- *access control* och *modifiers*
+
+* Begränsad åtkomst centralt koncept i Java. Åtkomst av metoder och fält
+  bestäms med **åtkomstmodifierare**;
+
+    + **`private`** anger att en medlem inte är åtkomlig från någon annan klass.
+    
+    + **`protected`** anger att en medlem är åtkomlig från klassens subklasser
+      samt från övriga klasser i samma paket.
+    
+    + **`public`** anger att en medlem är åtkomlig från samtliga klasser.
+
+    + Ett fält eller en metod har paketåtkomst om man inte anger någon
+      åtkomstmodifierare. Det innebär att samtliga klasser som ligger i samma 
+      paket kan utnyttja fältet eller metoden. 
+
+    **Referens**: [nada.kth.se: Svensk Javaterminologi]
+
+
+### Access Levels
+
+| Modifier    | Class | Package | Subclass | World |
+|:------------|:-----:|:-------:|:--------:|:-----:|
+| `public`    |  yes  |   yes   |   yes    |  yes  |
+| `protected` |  yes  |   yes   |   yes    |  no   |
+| no modifier |  yes  |   yes   |   no     |  no   |
+| `private`   |  yes  |   no    |   no     |  no   |
+
+> The first data column indicates whether the class itself has access to the
+> member defined by the access level. As you can see, a class always has access
+> to its own members. The second column indicates whether classes in the same
+> package as the class (regardless of their parentage) have access to the member.
+> The third column indicates whether subclasses of the class declared outside
+> this package have access to the member. The fourth column indicates whether 
+> all classes have access to the member.
+> 
+> Access levels affect you in two ways. First, when you use classes that come
+> from another source, such as the classes in the Java platform, access levels
+> determine which members of those classes your own classes can use. 
+> Second, when you write a class, you need to decide what access level every 
+> member variable and every method in your class should have.
+>
+> [Controlling Access to Members of a Class, the Java Tutorials]
+
+
+### Tips on Choosing an Access Level: 
+> If other programmers use your class, you want to ensure that errors from
+> misuse cannot happen. Access levels can help you do this.
+>
+> Use the most restrictive access level that makes sense for a particular member.
+> Use private unless you have a good reason not to.  Avoid public fields except
+> for constants. (Many of the examples in the tutorial use public fields. This
+> may help to illustrate some points concisely, but is not recommended for
+> production code.) Public fields tend to link you to a particular implementation
+> and limit your flexibility in changing your code.
+>
+> [Controlling Access to Members of a Class, the Java Tutorials]
+
+
+[Controlling Access to Members of a Class, the Java Tutorials]:
+http://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
+
+
 
 Objekt
 ------
